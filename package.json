@@ -1,0 +1,35 @@
+{
+  "name": "commenter",
+  "version": "1.0.0",
+  "description": "task for first JPR",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "Kalhin Roman",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "path": "^0.12.7",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalhin/commenter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kalhin/commenter/issues"
+  },
+  "homepage": "https://github.com/kalhin/commenter#readme"
+}

@@ -1,0 +1,25 @@
+<div ng-controller="signUpCtrl">
+    <form>
+        <h1>Sign Up</h1>
+        <p>Please fill in this form to create an account.</p>
+        <p>{{nameErrorMessage}}</p>
+        <label>User Name
+                <em>*</em>
+            <input type="text" placeholder="Enter User Name" required ng-model="user.name">
+        </label>
+        <p>{{passwErrorMessage}}</p>
+        <label>Password
+                <em>*</em>
+            <input type="password" placeholder="Enter Password" required ng-model="user.password">
+        </label>
+        <p>{{repeatPasswErrorMessage}}</p>
+        <label>Repeat Password
+                <em>*</em>
+            <input type="password" placeholder="Repeat Password" required ng-model="user.repeatPassword">
+        </label>
+        <label>
+            <input type="checkbox" checked="checked" ng-model="user.isRememberPassword">Remember me
+        </label>
+        <button type="submit" ng-click="signUp()">Sign Up</button>
+    </form>
+</div>

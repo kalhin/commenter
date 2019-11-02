@@ -1,9 +1,11 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
-    bundle: "./src/index.js"
+    bundle: "./src/index.js",
+    bundle: "./src/scss/main.scss"
   },
   output: {
     filename: "[name].js",
@@ -17,18 +19,37 @@ module.exports = {
         loader: "babel-loader",
         exclude: "/node_modules/"
       },
-    //   {
-    //     test: /\.css$/,
-    //     use: ["css-loader", MiniCssExtractPlugin.loader]
-    //   }
+      // {
+      //   test: /\.(sass|scss)$/,
+      //   include: path.resolve(__dirname, "src/scss"),
+      //   use: ExtractTextPlugin.extract({
+      //     use: [
+      //       {
+      //         loader: "css-loader",
+      //         options: {
+      //           sourceMap: true,
+      //           minimize: true,
+      //           url: false
+      //         }
+      //       },
+      //       {
+      //         loader: "sass-loader",
+      //         options: {
+      //           sourceMap: true
+      //         }
+      //       }
+      //     ]
+      //   })
+      // }
     ]
   },
   devServer: {
     overlay: true
   },
-//   plugins: [
-//     new MiniCssExtractPlugin({
-//       filename: "[name].css"
-//     })
-//   ]
+  // plugins: [
+  //   new ExtractTextPlugin({
+  //     filename: "./css/style.bundle.css",
+  //     allChunks: true
+  //   })
+  // ]
 };

@@ -1,6 +1,6 @@
-const router = function($routeProvider) {
+const router = ($routeProvider, $locationProvider) => {
   $routeProvider
-  .when("/signUp", {
+  .when("/", {
     templateUrl: "src/views/signUp.html",
     controller: "signUpCtrl"
   })
@@ -9,8 +9,9 @@ const router = function($routeProvider) {
     controller: "signInCtrl"
   })
   .otherwise({
-    redirectTo: '/'
+    redirectTo: "/"
   });
+  $locationProvider.html5Mode(true);                        
 };
 
 export default router;

@@ -1,5 +1,5 @@
-const signUpCtrl = function($scope, $window) {
-    $window.location.href = '/signUp';
+const signUpCtrl = function($scope, $window, $location) {
+
   const vm = this;
 
   const userNameRegexp = new RegExp(/^[a-zA-Z0-9_-]{5,15}$/); //low and up case and from 5 to 15 characters or numbers
@@ -25,31 +25,38 @@ const signUpCtrl = function($scope, $window) {
 
   user.isRememberPassword = true;
 
-  $scope.$watch("user.name", function(newValue) {
+  $scope.$watch("user.name", newValue => {
     user.isUserNameValidate = userNameRegexp.test(newValue);
     console.log(user.isUserNameValidate);
   });
 
-  $scope.$watch("user.password", function(newValue) {
+  $scope.$watch("user.password", newValue => {
     user.isUserPasswValidate = userPasswRegexp.test(newValue);
     console.log(user.isUserPasswValidate);
   });
 
-  $scope.$watch("user.repeatPassword", function(newValue) {
+  $scope.$watch("user.repeatPassword", newValue => {
     user.password === newValue && user.password !== null
       ? (user.isRepeatPasswValidate = true)
       : (user.isRepeatPasswValidate = false);
     console.log(user.isRepeatPasswValidate);
   });
 
-  $scope.signUp = function() {
-    user.isUserNameValidate &&
+  $scope.signUp = () => {
+    if(user.isUserNameValidate &&
     user.isUserPasswValidate &&
-    user.isRepeatPasswValidate
-      ? console.log(true)
-      : console.log(false);
+    user.isRepeatPasswValidate) {
+      api(user.name, user.password).then(() => {
+        $location.path('/signIn');
+      })      
+    } else {
+      console.error("non validate");
+    }
   };
 
+  const api = (userName, userPassw) => {
+    localStorage.setItem(userName, userPassw)
+  }
 };
 
 export default signUpCtrl;

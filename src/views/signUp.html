@@ -1,27 +1,27 @@
 <div ng-controller="signUpCtrl">
-    <img src="../../src/img/logo.png" alt="logo">
-    <h1>ComMEnter</h1>
+    <!-- <img src="../../src/img/logo.png" alt="logo"> -->
+    <h1>ComMEnteR</h1>
     <form>
         <h2>Sign Up</h2>
         <p>Please fill in this form to create an account.</p>
-        <p>{{nameErrorMessage}}</p>
         <label>User Name
-                <em>*</em>
+            <em>*</em>
             <input type="text" placeholder="Enter User Name" required ng-model="user.name">
         </label>
-        <p>{{passwErrorMessage}}</p>
-        <label>Password
+        <div>
+            <label>Password
                 <em>*</em>
-            <input type="password" placeholder="Enter Password" required ng-model="user.password">
-        </label>
-        <p>{{repeatPasswErrorMessage}}</p>
-        <label>Repeat Password
+                <input type="password" placeholder="Enter Password" required ng-model="user.password">
+            </label>
+            <img class="show-hide-passw" src="../../src/img/view.png" alt="eye" ng-click="showPassw($event)">
+        </div>
+        <div>
+            <label>Repeat Password
                 <em>*</em>
-            <input type="password" placeholder="Repeat Password" required ng-model="user.repeatPassword">
-        </label>
-        <label>
-            <input type="checkbox" checked="checked" ng-model="user.isRememberPassword">Remember me
-        </label>
+                <input type="password" placeholder="Repeat Password" required ng-model="user.repeatPassword">
+            </label>
+            <img class="show-hide-passw" src="../../src/img/view.png" alt="eye" ng-click="showPassw($event)">
+        </div>
         <button type="submit" ng-click="signUp()">Sign Up</button>
     </form>
 </div>

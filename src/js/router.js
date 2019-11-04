@@ -8,6 +8,10 @@ const router = ($routeProvider, $locationProvider) => {
     templateUrl: "src/views/signIn.html",
     controller: "signInCtrl"
   })
+  .when("/commenter", {
+    templateUrl: "src/views/commenterFlow.html",
+    controller: "commenterFlowCtrl"
+  })
   .otherwise({
     redirectTo: "/"
   });

@@ -1,6 +1,7 @@
 import angular from "angular";
 import ngRoute from "angular-route";
 import router from "./js/router";
+import "./services/dataBaseService";
 import signUpCtrl from "./js/controllers/signUpCtrl";
 import signInCtrl from "./js/controllers/signInCtrl";
 import commenterFlowCtrl from "./js/controllers/commenterFlowCtrl";

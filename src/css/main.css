@@ -6,15 +6,20 @@ body {
     background-color: black;
 }
 
-.red-border {
+
+input.ng-invalid {
     border: 2px solid red
 }
 
-input {
+input.ng-empty {
+    border: 2px solid blue;
+}
+
+input.ng-valid {
     border: 2px solid green;
 }
 
-.show-hide-passw {
+.show-hide-eye {
     filter: invert(1);
     width: 30px;
 }

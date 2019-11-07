@@ -4,6 +4,10 @@ const router = ($routeProvider, $locationProvider) => {
     templateUrl: "src/views/signUp.html",
     controller: "signUpCtrl"
   })
+  .when("/signUp", {
+    templateUrl: "src/views/signUp.html",
+    controller: "signUpCtrl"
+  })
   .when("/signIn", {
     templateUrl: "src/views/signIn.html",
     controller: "signInCtrl"

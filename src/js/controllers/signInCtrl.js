@@ -15,7 +15,7 @@ const signInCtrl = function($scope, $window, $location) {
 
   $scope.$watch("user.isRememberPassword", newValue => {
     user.isRememberPassword = newValue;
-    console.log(user.isRememberPassword);
+    // console.log(user.isRememberPassword);
   });
 
   $scope.showPassw = $event => {
@@ -36,7 +36,7 @@ const signInCtrl = function($scope, $window, $location) {
     if (userName === inputField[0].value && userPassw === inputField[1].value) {
       api(user.isRememberPassword);
       $location.path("/commenter");
-      console.log("set data to local storage");
+      // console.log("set data to local storage");
     } else if (
       userName !== inputField[0].value &&
       userPassw === inputField[1].value

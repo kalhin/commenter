@@ -5,12 +5,12 @@ if (localStorage.getItem("users") === null) {
 }
 
 const setDataBaseToLocalStorage = (key, data) => {
+  localStorage.removeItem(key);
   localStorage.setItem(key, JSON.stringify(data));
 };
 
 const getDataBaseToLocalStorage = (key) => {
-    const data = JSON.parse(localStorage.getItem(key));
-    localStorage.removeItem(key);
+    const data = JSON.parse(localStorage.getItem(key));    
     return data;
   };
 

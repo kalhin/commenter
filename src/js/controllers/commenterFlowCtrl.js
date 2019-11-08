@@ -1,8 +1,10 @@
-const commenterFlowCtrl = ($scope) => {
+const commenterFlowCtrl = ($scope, $rootScope) => {
     const vm = this;
 
-    const userName = localStorage.getItem("userName");
-    $scope.userName = userName[0].toUpperCase() + userName.slice(1);
+    const firstName = $rootScope.user.firstName;
+    const lastName = $rootScope.user.lastName;
+    $scope.user.firstName = firstName[0].toUpperCase() + firstName.slice(1);
+    $scope.user.lastName[0].toUpperCase() + firstName.slice(1);
 }
 
 export default commenterFlowCtrl;

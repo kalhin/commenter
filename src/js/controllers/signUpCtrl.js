@@ -11,22 +11,13 @@ const signUpCtrl = function($scope, $window, $location, $rootScope) {
   user.firstName = "";
   user.lastName = "";
   user.password = "";
-  user.repeatPassword = ""
+  user.repeatPassword = "";
 
   $scope.userNamePattern = /^[a-zA-Z0-9_-]{3,15}$/; //low and up case and from 5 to 15 characters or numbers
   $scope.userPasswPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/; // Minimum 6 characters, at least one letter and one number
   $scope.userRepeatPasswPattern = user.password;
 
-  $scope.$watch("user.firstName", newValue => {
-    user.firstName = newValue;
-  });
-
-  $scope.$watch("user.lastName", newValue => {
-    user.lastName = newValue;
-  });
-
   $scope.$watch("user.password", newValue => {
-    user.password = newValue;
     $scope.userRepeatPasswPattern = newValue;
   });
 
@@ -53,7 +44,9 @@ const signUpCtrl = function($scope, $window, $location, $rootScope) {
             user.firstName = "";
             user.lastName = "";
             $scope.$apply();
-            console.log("Request failed!")
+            console.log("Request failed!");
+            console.error("This name already exist")
+            reject();
           } else {
             data.push({
               id: data[data.length - 1].id + 1,
@@ -91,6 +84,8 @@ const signUpCtrl = function($scope, $window, $location, $rootScope) {
     }
     return bol;
   };
+
+  $scope.signInRedirect = () => $location.path("/signIn");
 };
 
 export default signUpCtrl;

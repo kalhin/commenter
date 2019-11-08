@@ -1,22 +1,20 @@
-const signInCtrl = function($scope, $window, $location) {
+import { getDataRequest } from "../API/api";
+
+const signInCtrl = function($scope, $window, $location, $rootScope) {
   const vm = this;
 
-  const userName = localStorage.getItem("userName");
-  const userPassw = localStorage.getItem("userPassw");
+  $scope.errorMessage = "Please fill in this form to enter account.";
 
+  $rootScope.user = {};
   $scope.user = {};
-  let user = $scope.user;
+  const user = $scope.user;
 
-  user.name = "";
+  user.firstName = "";
+  user.lastName = "";
   user.password = "";
-  user.isRememberPassword = true;
 
-  const inputField = document.querySelectorAll("input");
-
-  $scope.$watch("user.isRememberPassword", newValue => {
-    user.isRememberPassword = newValue;
-    // console.log(user.isRememberPassword);
-  });
+  $scope.userNamePattern = /^[a-zA-Z0-9_-]{3,15}$/; //low and up case and from 5 to 15 characters or numbers
+  $scope.userPasswPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/; // Minimum 6 characters, at least one letter and one number
 
   $scope.showPassw = $event => {
     $event.target.parentNode
@@ -33,30 +31,50 @@ const signInCtrl = function($scope, $window, $location) {
   };
 
   $scope.signIn = () => {
-    if (userName === inputField[0].value && userPassw === inputField[1].value) {
-      api(user.isRememberPassword);
-      $location.path("/commenter");
-      // console.log("set data to local storage");
-    } else if (
-      userName !== inputField[0].value &&
-      userPassw === inputField[1].value
-    ) {
-      inputField[0].setAttribute("class", "red-border");
-      inputField[1].classList.remove("red-border");
-    } else if (
-      userName === inputField[0].value &&
-      userPassw !== inputField[1].value
-    ) {
-      inputField[1].setAttribute("class", "red-border");
-      inputField[0].classList.remove("red-border");
-    } else {
-      inputField[0].setAttribute("class", "red-border");
-      inputField[1].setAttribute("class", "red-border");
-    }
-  };
-
-  const api = isRememberPassword => {
-    localStorage.setItem("isRememberPassword", isRememberPassword);
+    getDataRequest().then(data => {
+      for (let i = 0; i < data.length; i++) {
+        if (
+          data[i].first_name === user.firstName &&
+          data[i].last_name === user.lastName &&
+          data[i].password === user.password
+        ) {
+          $rootScope.user.firstName = user.firstName;
+          $rootScope.user.lastName = user.lastName;
+          $location.path("/commenter");
+          $scope.$apply();
+          break;
+        } else {
+          if (           
+            data[i].first_name === user.firstName &&
+            data[i].last_name === user.lastName &&
+            data[i].password !== user.password
+          ) {
+            $scope.errorMessage = `Wrong password! Please check it.`;
+            $scope.$apply();
+            break;
+          } else if (
+            data[i].first_name === user.firstName &&
+            data[i].last_name !== user.lastName &&
+            data[i].password === user.password
+          ) {
+            $scope.errorMessage = `Wrong last name: ${user.lastName}! Please check it.`;
+            $scope.$apply();
+            break;
+          } else if (
+            data[i].first_name !== user.firstName &&
+            data[i].last_name === user.lastName &&
+            data[i].password === user.password
+          ) {
+            $scope.errorMessage = `Wrong first name: ${user.firstName}! Please check it.`;
+            $scope.$apply();
+            break;
+          } else {
+            $scope.errorMessage = `User: ${user.firstName} ${user.lastName} does not exist!`;
+            $scope.$apply();
+          }
+        }
+      }
+    });
   };
 };
 

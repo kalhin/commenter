@@ -1,4 +1,4 @@
-import { getDataRequest } from "../API/api";
+import { getDataRequest, postRequest } from "../API/api";
 
 const signInCtrl = function($scope, $window, $location, $rootScope) {
   const vm = this;
@@ -40,11 +40,14 @@ const signInCtrl = function($scope, $window, $location, $rootScope) {
         ) {
           $rootScope.user.firstName = user.firstName;
           $rootScope.user.lastName = user.lastName;
-          $location.path("/commenter");
-          $scope.$apply();
+
+          postRequest("isUserLogin", true).then(() => {
+            $location.path("/commenter");
+            $scope.$apply();
+          });
           break;
         } else {
-          if (           
+          if (
             data[i].first_name === user.firstName &&
             data[i].last_name === user.lastName &&
             data[i].password !== user.password
@@ -76,6 +79,8 @@ const signInCtrl = function($scope, $window, $location, $rootScope) {
       }
     });
   };
+
+  $scope.signUpRedirect = () => $location.path("/signUp");
 };
 
 export default signInCtrl;

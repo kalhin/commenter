@@ -6,27 +6,24 @@
         <p class="error-message" ng-bind="errorMessage">{{}}</p>
         <label>First Name
             <em>*</em>
-            <input name="firstName" type="text" placeholder="Enter First Name" 
-                required ng-model="user.firstName"
+            <input name="firstName" type="text" placeholder="Enter First Name" required ng-model="user.firstName"
                 ng-pattern="userNamePattern">
         </label>
         <label>Last Name
             <em>*</em>
-            <input name="LastName" type="text" placeholder="Enter Last Name" 
-                required ng-model="user.lastName"
+            <input name="LastName" type="text" placeholder="Enter Last Name" required ng-model="user.lastName"
                 ng-pattern="userNamePattern">
         </label>
         <div>
             <label>Password
                 <em>*</em>
                 <input name="passwordInput" type="password" placeholder="Enter Password" required
-                    ng-model="user.password" 
-                    ng-pattern="userPasswPattern">
+                    ng-model="user.password" ng-pattern="userPasswPattern">
             </label>
             <img class="show-hide-eye" src="../../src/img/hide.png" alt="eye" ng-click="showPassw($event)">
         </div>
-        <button type="submit" 
-            ng-disabled="signInForm.$invalid" 
-            ng-click="signIn()">Sign In</button>
+        <button type="submit" ng-disabled="signInForm.$invalid" ng-click="signIn()">Sign In</button>
     </form>
+    <p>or back to</p>
+    <button type="button" ng-click="signUpRedirect()">Sign Up</button>
 </div>

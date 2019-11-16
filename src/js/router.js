@@ -1,9 +1,13 @@
 const router = ($routeProvider, $locationProvider) => {
   $routeProvider
   .when("/", {
-    templateUrl: "src/views/signUp.html",
-    controller: "signUpCtrl"
+    templateUrl: "src/views/commenter.html",
+    controller: "commenterCtrl"
   })
+  // .when("/", {
+  //   templateUrl: "src/views/mainPage.html",
+  //   controller: "mainPageCtrl"
+  // })
   .when("/signUp", {
     templateUrl: "src/views/signUp.html",
     controller: "signUpCtrl"
@@ -13,8 +17,8 @@ const router = ($routeProvider, $locationProvider) => {
     controller: "signInCtrl"
   })
   .when("/commenter", {
-    templateUrl: "src/views/commenterFlow.html",
-    controller: "commenterFlowCtrl"
+    templateUrl: "src/views/commenter.html",
+    controller: "commenterCtrl"
   })
   .otherwise({
     redirectTo: "/"

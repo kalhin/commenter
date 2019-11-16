@@ -73,4 +73,8 @@ const dataBase = [
   },
 ];
 
+const postsDataBase = [
+  
+];
+
 export default dataBase;

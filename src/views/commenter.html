@@ -2,9 +2,9 @@
     <img class="logo" src="../../src/img/logo.png" alt="logo">
     <h1>ComMEnteR</h1>
     <!-- <p>Hello {{user.firstName}} {{user.lastName}}!</p> -->
-    <button ng-hide="isPostCreated" ng-click="createPost()">Add post</button>
-    <posts-component></posts-component>
-
-
+    <p>{{errorMessage}}</p>
+    <button ng-click="createPost()">Add post</button>
     <button type="button" ng-click="logout()">Logout</button>
+
+    <posts-component></posts-component>
 </div>

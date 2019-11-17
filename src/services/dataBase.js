@@ -74,7 +74,16 @@ const dataBase = [
 ];
 
 const postsDataBase = [
-  
+  {
+    id: 2,
+    posts: [{
+      postId: 1,
+      userName: "Meier MacIlriach",
+      title: "What is trail running",
+      content: "Trail running is a sport-activity which combines running, and, where there are steep gradients, hiking, that is run on any unpaved surface. It is similar to both mountain and fell running (also known as hill running). Mountain running may, however, include paved sections. Trail running normally takes place in warm climates, or on good paths, or tracks which are relatively easy to follow, and does not necessarily involve the significant amounts of ascent, or need for navigating skills, normal in fell running.[2] Unlike road running and track running it generally takes place on hiking trails, often in mountainous terrain, where there can be much larger ascents and descents. It is difficult to definitively distinguish trail running from cross country running. In general, however, cross country is an IAAF-governed discipline that is typically raced over shorter distances.",
+      comments: []
+    }]
+  }  
 ];
 
-export default dataBase;
+export { dataBase, postsDataBase };

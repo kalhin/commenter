@@ -1,7 +1,11 @@
-import dataBase from "./dataBase";
+import { dataBase, postsDataBase } from "./dataBase";
 
 if (localStorage.getItem("users") === null) {
   localStorage.setItem("users", JSON.stringify(dataBase));
+}
+
+if (localStorage.getItem("posts") === null) {
+  localStorage.setItem("posts", JSON.stringify(postsDataBase));
 }
 
 const setDataBaseToLocalStorage = (key, data) => {

@@ -1,13 +1,44 @@
-import { postRequest } from "../API/api";
+import { postRequest, getRequest } from "../API/api";
 
 const commenterCtrl = ($scope, $rootScope, $location) => {
-    const vm = this;
-    // $scope.user = {}
-    $scope.isPostCreated = false;
+    // console.log($rootScope.user)
+    
+    $scope.errorMessage = ""
+    const errorMessage = "If you want add post, you should enter post title and content"
 
     $scope.createPost = () => {
-        console.log("post created");
-        $scope.isPostCreated = true;
+        const title = prompt("Please add Title to your post");
+        const content = prompt("Please add Content for your post");
+
+        if (title !== null && content !== null) {
+            getRequest("posts").then((data) => {
+                // const userId = $rootScope.user.id;
+
+                for (let i = 0; i < data.length; i++) {
+                    if (true) {
+                    // if (data[i].id === userId) {
+                        const newPost = {
+                            postId: data[i].posts.length + 1,
+                            title: title,
+                            content: content
+                        }
+                        data[i].posts.push(newPost);
+                        console.log(data[i])
+                        // postRequest("posts", data);
+                        // $scope.$apply();
+                        break;
+                    } else {
+                        continue;
+                    }
+                }
+            })
+        } else {
+            $scope.errorMessage = errorMessage;
+            setTimeout(() => {
+                $scope.errorMessage = ""; 
+                $scope.$apply();
+            },5000);
+        }
     }
     
 
@@ -19,6 +50,10 @@ const commenterCtrl = ($scope, $rootScope, $location) => {
 
     $scope.logout = () => {
         postRequest("isUserLogin", false).then(() => {
+            $rootScope.user.firstName = "";
+            $rootScope.user.lastName = "";
+            $rootScope.user.id = null;
+
             $location.path("/");
             $scope.$apply();
         });

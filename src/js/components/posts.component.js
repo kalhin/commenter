@@ -1,6 +1,9 @@
+import { getRequest } from "../API/api";
+
 const postsComponent =
   ("postsComponent",
   {
+    // templateUrl: "../../views/post.html",
     template:
       "<div ng-repeat='post in $ctrl.posts'>" +
       "<h2>{{post.userName}}</h2>" +
@@ -8,27 +11,18 @@ const postsComponent =
       "<p>{{post.content}}</p>" +
       "</div>",
 
-    controller: function postCtrl() {
-      this.posts = [
-        // {
-        //   userName: "Ffkfjgdsf Ydckhds",
-        //   title: "Ghjsdfhsdhfks'fksdfjsdfjsdlkfjsd",
-        //   content:
-        //     "Lorem sdfkjsdlfjsdlkfsdlkfjsdklfjsdklfjsdlkfjsdlkfjsdlkfjsldkfjcouhkavnbodipotk zmndvskf,mfdnjvwk;calzkxlfdgvjlfklcc,mf "
-        // },
-        // {
-        //   userName: "Ydskjfskd Lfdsjhds",
-        //   title: "Helloooooooo ",
-        //   content:
-        //     "Lorem sdfkjsdlfjsdlkfsdlkfjsdklfjsdklfjsdlkfjsdlkfjsdlkfjsldkfjcouhkavnbodipotk zmndvskf,mfdnjvwk;calzkxlfdgvjlfklcc,mf "
-        // },
-        // {
-        //   userName: "Kalhin Roman",
-        //   title: "Hello Component",
-        //   content:
-        //     "Lorem sdfkjsdlfjsdlkfsdlkfjsdklfjsdklfjsdlkfjsdlkfjsdlkfjsldkfjcouhkavnbodipotk zmndvskf,mfdnjvwk;calzkxlfdgvjlfklcc,mf "
-        // }
-      ];
+    controller: function postCtrl($scope) {
+      getRequest("posts").then(data => {
+        console.log(data)
+        let printData = [];
+        for (let i = 0; i < data.length; i++) {
+          console.log(data[i].posts)
+          printData.push(data[i].posts)
+        }
+        console.log(printData)
+        this.posts = printData[0];
+        $scope.$apply();
+      });
     }
   });
 

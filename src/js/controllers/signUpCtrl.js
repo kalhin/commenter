@@ -1,7 +1,6 @@
 import { getDataRequest, wtiteDataRequest } from "../API/api";
 
 const signUpCtrl = function($scope, $window, $location, $rootScope) {
-  const vm = this;
 
   $scope.errorMessage = "Please fill in this form to create an account.";
 

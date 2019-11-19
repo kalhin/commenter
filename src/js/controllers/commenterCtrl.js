@@ -2,18 +2,27 @@ import { postRequest, getRequest } from "../API/api";
 
 const commenterCtrl = ($scope, $rootScope, $location, $route) => {
   // console.log($rootScope.user)
-
+  $scope.postTitle = "";
+  $scope.postContent = "";
+  $scope.isCreatingPost = false;
+  $scope.isAddingPost = false;
   $scope.errorMessage = "";
   const errorMessage =
     "If you want add post, you should enter post title and content";
 
+  let currentUser;
+  getRequest("currentUser").then(data => {
+    currentUser = data;
+  });
+
+  $scope.addPost = () => {
+    $scope.isCreatingPost = true;
+    $scope.isAddingPost = true;
+  }
+
   $scope.createPost = () => {
-    let currentUser;
-    getRequest("currentUser").then(data => {
-      currentUser = data;
-    });
-    const title = prompt("Please add Title to your post");
-    const content = prompt("Please add Content for your post");
+    const title = $scope.postTitle;
+    const content = $scope.postContent;
 
     if (title !== null && content !== null) {
       getRequest("posts").then(data => {
@@ -44,7 +53,15 @@ const commenterCtrl = ($scope, $rootScope, $location, $route) => {
         $scope.$apply();
       }, 5000);
     }
-  };
+  }
+
+  $scope.canselCreatingPost = () => {
+    $scope.isCreatingPost = false;
+    $scope.isAddingPost = false;
+  }
+
+
+  
 
   // $scope.user.firstName = firstName[0].toUpperCase() + firstName.slice(1);
   // $scope.user.lastName = lastName[0].toUpperCase() + lastName.slice(1);

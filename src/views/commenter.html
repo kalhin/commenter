@@ -3,8 +3,14 @@
     <h1>ComMEnteR</h1>
     <!-- <p>Hello {{user.firstName}} {{user.lastName}}!</p> -->
     <p>{{errorMessage}}</p>
-    <button ng-click="createPost()">Add post</button>
     <button type="button" ng-click="logout()">Logout</button>
+    <button ng-disabled="isCreatingPost" ng-click="addPost()">Add post</button>
+    <div ng-show="isAddingPost">
+        <input type="text" ng-model="postTitle">
+        <input type="text" ng-model="postContent">
+        <button type="button" ng-click="createPost()">Add to wall</button>
+        <button type="button" ng-click="canselCreatingPost()">Cancel</button>
+    </div>
 
     <posts-component></posts-component>
 </div>

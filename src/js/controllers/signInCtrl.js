@@ -1,7 +1,6 @@
 import { getDataRequest, postRequest } from "../API/api";
 
 const signInCtrl = function($scope, $window, $location, $rootScope) {
-
   $scope.errorMessage = "Please fill in this form to enter account.";
 
   $rootScope.user = {};
@@ -24,9 +23,9 @@ const signInCtrl = function($scope, $window, $location, $rootScope) {
     const input = $event.target.parentNode.querySelector("input");
     img !== "view.png"
       ? ($event.target.setAttribute("src", "../../src/img/view.png"),
-        input.setAttribute("type", "password"))
+        input.setAttribute("type", "text"))
       : ($event.target.setAttribute("src", "../../src/img/hide.png"),
-        input.setAttribute("type", "text"));
+        input.setAttribute("type", "password"));
   };
 
   $scope.signIn = () => {
@@ -37,14 +36,19 @@ const signInCtrl = function($scope, $window, $location, $rootScope) {
           data[i].last_name === user.lastName &&
           data[i].password === user.password
         ) {
-          $rootScope.user.firstName = user.firstName;
-          $rootScope.user.lastName = user.lastName;
-          $rootScope.user.id = data[i].id;
-
-          postRequest("isUserLogin", true).then(() => {
+          postRequest(
+            "currentUser",
+            JSON.stringify({
+              firstName: user.firstName,
+              lastName: user.lastName,
+              id: data[i].id
+            })
+          ).then(() => {
+            localStorage.setItem("isUserLogin", true);
             $location.path("/commenter");
             $scope.$apply();
           });
+
           break;
         } else {
           if (
@@ -56,14 +60,6 @@ const signInCtrl = function($scope, $window, $location, $rootScope) {
             $scope.$apply();
             break;
           } else if (
-            data[i].first_name === user.firstName &&
-            data[i].last_name !== user.lastName &&
-            data[i].password === user.password
-          ) {
-            $scope.errorMessage = `Wrong last name: ${user.lastName}! Please check it.`;
-            $scope.$apply();
-            break;
-          } else if (
             data[i].first_name !== user.firstName &&
             data[i].last_name === user.lastName &&
             data[i].password === user.password
@@ -71,9 +67,20 @@ const signInCtrl = function($scope, $window, $location, $rootScope) {
             $scope.errorMessage = `Wrong first name: ${user.firstName}! Please check it.`;
             $scope.$apply();
             break;
-          } else {
+          } else if (
+            data[i].first_name === user.firstName &&
+            data[i].last_name !== user.lastName &&
+            data[i].password === user.password
+          ) {
+            $scope.errorMessage = `Wrong last name: ${user.lastName}! Please check it.`;
+            $scope.$apply();
+            break;
+          } else if (i === data.length - 1) {
             $scope.errorMessage = `User: ${user.firstName} ${user.lastName} does not exist!`;
             $scope.$apply();
+            break;
+          } else {
+            continue;
           }
         }
       }

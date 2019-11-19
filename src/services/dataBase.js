@@ -83,6 +83,16 @@ const postsDataBase = [
       content: "Trail running is a sport-activity which combines running, and, where there are steep gradients, hiking, that is run on any unpaved surface. It is similar to both mountain and fell running (also known as hill running). Mountain running may, however, include paved sections. Trail running normally takes place in warm climates, or on good paths, or tracks which are relatively easy to follow, and does not necessarily involve the significant amounts of ascent, or need for navigating skills, normal in fell running.[2] Unlike road running and track running it generally takes place on hiking trails, often in mountainous terrain, where there can be much larger ascents and descents. It is difficult to definitively distinguish trail running from cross country running. In general, however, cross country is an IAAF-governed discipline that is typically raced over shorter distances.",
       comments: []
     }]
+  },
+  {
+    id: 10,
+    posts: [{
+      postId: 1,
+      userName: "Val McGlashan",
+      title: "Cooking cream",
+      content: "The half-and-half cream is made up of half cream and half whole-milk. The fat content is usually 12% yet can vary from 10% to 18%. The half-and-half is more commonly used a creamer for tea or coffee. The lower fat content will mean it cannot be whipped but can be used as a substitute for whipping or light cream in a few recipes.",
+      comments: []
+    }]
   }  
 ];
 

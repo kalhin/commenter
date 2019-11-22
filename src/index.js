@@ -11,6 +11,8 @@ import signInCtrl from "./js/controllers/signInCtrl";
 import commenterCtrl from "./js/controllers/commenterCtrl";
 
 import postsComponent from "./js/components/posts.component";
+import postsEditing from "./js/components/post.editing";
+import postEditing from "./js/components/post.editing";
 
 
 
@@ -24,3 +26,4 @@ appModule.controller("signInCtrl", signInCtrl);
 appModule.controller("commenterCtrl", commenterCtrl);
 
 appModule.component("postsComponent", postsComponent);
+appModule.component("postEditing", postEditing);

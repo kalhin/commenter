@@ -10,7 +10,7 @@ const getDataRequest = function () {
       console.log("Preparing data...");
       const data = getDataBaseToLocalStorage("users");
       resolve(data);
-    }, 2000);
+    }, 1000);
   });
 }
 
@@ -21,7 +21,7 @@ const wtiteDataRequest = function (data) {
       setDataBaseToLocalStorage("users", data); 
       resolve();
       console.log("Data writed");
-    }, 2000, data);
+    }, 1000, data);
   });
 }
 
@@ -34,7 +34,7 @@ const getRequest = function (key) {
       const data = JSON.parse(localStorage.getItem(key))
 
       resolve(data);
-    }, 2000, key)
+    }, 1000, key)
   })
 }
 
@@ -45,7 +45,7 @@ const postRequest = function (key, data) {
       localStorage.setItem(key, data);
       resolve();
       console.log("Data writed");
-    }, 2000, key, data)
+    }, 1000, key, data)
   })
 }
 

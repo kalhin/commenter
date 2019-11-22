@@ -24,18 +24,18 @@ const commenterCtrl = ($scope, $rootScope, $location, $route) => {
     const title = $scope.postTitle;
     const content = $scope.postContent;
 
-    if (title !== null && content !== null) {
+    if (title !== "" && content !== "") {
       getRequest("posts").then(data => {
         for (let i = 0; i < data.length; i++) {
           if (data[i].id === currentUser.id) {
             const newPost = {
-              postId: data[i].posts.length + 1,
+              postId: data[i].posts[0].postId + 1,
               userName: `${currentUser.firstName} ${currentUser.lastName}`,
               title: title,
               content: content,
               comments: []
             };
-            data[i].posts.push(newPost);
+            data[i].posts.unshift(newPost);
             postRequest("posts", JSON.stringify(data)).then(() => {
               $route.reload();
             });
@@ -58,7 +58,11 @@ const commenterCtrl = ($scope, $rootScope, $location, $route) => {
   $scope.canselCreatingPost = () => {
     $scope.isCreatingPost = false;
     $scope.isAddingPost = false;
+    $scope.postTitle = "";
+    $scope.postContent = "";
   }
+
+  
 
 
   
@@ -67,7 +71,7 @@ const commenterCtrl = ($scope, $rootScope, $location, $route) => {
   // $scope.user.lastName = lastName[0].toUpperCase() + lastName.slice(1);
 
   $scope.logout = () => {
-    postRequest("curentUser", JSON.stringify({})).then(() => {
+    postRequest("currentUser", JSON.stringify({})).then(() => {
       localStorage.setItem("isUserLogin", false);
       $location.path("/");
       $scope.$apply();

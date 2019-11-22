@@ -6,8 +6,8 @@
     <button type="button" ng-click="logout()">Logout</button>
     <button ng-disabled="isCreatingPost" ng-click="addPost()">Add post</button>
     <div ng-show="isAddingPost">
-        <input type="text" ng-model="postTitle">
-        <input type="text" ng-model="postContent">
+        <input type="text" placeholder="Add title to post" ng-model="postTitle">
+        <input type="text" placeholder="Add content to post" ng-model="postContent">
         <button type="button" ng-click="createPost()">Add to wall</button>
         <button type="button" ng-click="canselCreatingPost()">Cancel</button>
     </div>

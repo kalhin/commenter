@@ -1,7 +1,7 @@
 import { postRequest, getRequest } from "../API/api";
 
 const commenterCtrl = ($scope, $rootScope, $location, $route) => {
-  // console.log($rootScope.user)
+
   $scope.postTitle = "";
   $scope.postContent = "";
   $scope.isCreatingPost = false;
@@ -23,13 +23,14 @@ const commenterCtrl = ($scope, $rootScope, $location, $route) => {
   $scope.createPost = () => {
     const title = $scope.postTitle;
     const content = $scope.postContent;
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
     if (title !== "" && content !== "") {
       getRequest("posts").then(data => {
         for (let i = 0; i < data.length; i++) {
           if (data[i].id === currentUser.id) {
             const newPost = {
-              postId: data[i].posts[0].postId + 1,
+              postId: currentUser.id + alphabet[Math.floor(Math.random() * alphabet.length)] + Math.floor(Math.random() * 10), //generate ID like '2f5'
               userName: `${currentUser.firstName} ${currentUser.lastName}`,
               title: title,
               content: content,
@@ -61,14 +62,6 @@ const commenterCtrl = ($scope, $rootScope, $location, $route) => {
     $scope.postTitle = "";
     $scope.postContent = "";
   }
-
-  
-
-
-  
-
-  // $scope.user.firstName = firstName[0].toUpperCase() + firstName.slice(1);
-  // $scope.user.lastName = lastName[0].toUpperCase() + lastName.slice(1);
 
   $scope.logout = () => {
     postRequest("currentUser", JSON.stringify({})).then(() => {

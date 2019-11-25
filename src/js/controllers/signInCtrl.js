@@ -1,6 +1,7 @@
 import { getDataRequest, postRequest } from "../API/api";
 
 const signInCtrl = function($scope, $window, $location, $rootScope) {
+  console.log(this)
   $scope.errorMessage = "Please fill in this form to enter account.";
 
   $rootScope.user = {};

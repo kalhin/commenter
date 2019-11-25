@@ -1,7 +1,7 @@
 import { getRequest } from "../API/api";
 
 const mainPageCtrl = ($scope, $location) => {
-
+    console.log(this)
     getRequest("isUserLogin").then(data => {
         if (data) {
           $location.path("/commenter");

@@ -1,6 +1,6 @@
 import { getRequest } from "../API/api";
 
-const mainPageCtrl = ($scope, $location) => {
+const mainPageCtrl = function($scope, $location) {
     console.log(this)
     getRequest("isUserLogin").then(data => {
         if (data) {
@@ -10,7 +10,7 @@ const mainPageCtrl = ($scope, $location) => {
       });
 
     $scope.signUpRedirect = () => $location.path("/signUp");
-    $scope.signInRedirect = () => $location.path("/signIn")
+    $scope.signInRedirect = () => $location.path("/signIn");
 }
 
 export default mainPageCtrl;

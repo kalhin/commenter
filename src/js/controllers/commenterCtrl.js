@@ -1,6 +1,6 @@
 import { postRequest, getRequest } from "../API/api";
 
-const commenterCtrl = ($scope, $rootScope, $location, $route) => {
+const commenterCtrl = function($scope, $rootScope, $location, $route) {
 
   $scope.postTitle = "";
   $scope.postContent = "";

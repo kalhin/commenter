@@ -27,7 +27,7 @@ const postEditing =
 
       $scope.editingPost = $event => {
         getRequest("posts").then((data) => {
-          console.log(this)
+          // console.log(this)
           // console.log(this.id)
           // console.log(data)
           for (let i = 0; i < data.length; i++) {

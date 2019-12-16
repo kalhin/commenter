@@ -1,11 +1,9 @@
 const path = require("path");
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
-    bundle: "./src/index.js",
-    // bundle: "./src/scss/main.scss"
+    bundle: "./src/index.js"
   },
   output: {
     filename: "[name].js",
@@ -15,41 +13,28 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.s[ac]ss$/i,
         loader: "babel-loader",
         exclude: "/node_modules/"
+      },
+      {
+        test: /\.scss$/,
+        exclude: "/node_modules/",
+        use: [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
       }
-      // {
-      //   test: /\.(sass|scss)$/,
-      //   include: path.resolve(__dirname, "src/scss"),
-      //   use: ExtractTextPlugin.extract({
-      //     use: [
-      //       {
-      //         loader: "css-loader",
-      //         options: {
-      //           sourceMap: true,
-      //           minimize: true,
-      //           url: false
-      //         }
-      //       },
-      //       {
-      //         loader: "sass-loader",
-      //         options: {
-      //           sourceMap: true
-      //         }
-      //       }
-      //     ]
-      //   })
-      // }
     ]
   },
   devServer: {
     overlay: true
-  },
-  // plugins: [
-  //   new ExtractTextPlugin({
-  //     filename: "./css/style.bundle.css",
-  //     allChunks: true
-  //   })
-  // ]
+  }
 };

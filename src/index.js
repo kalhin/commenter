@@ -1,6 +1,7 @@
 import angular from "angular";
 import ngRoute from "angular-route";
 import router from "./js/router";
+import "./scss/main.scss";
 
 import "./js/controllers/initCtrl";
 import "./services/dataBaseService";

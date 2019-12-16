@@ -22,7 +22,7 @@ const postsComponent =
 
     controller: function postCtrl($scope, $route) {
       this.editingId;
-      console.log(this.currentUser)
+      console.log(111, this.currentUser)
       // this.currentUser;
 
       getRequest("currentUser").then(data => {

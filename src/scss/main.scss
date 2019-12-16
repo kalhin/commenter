@@ -1,0 +1,27 @@
+@import "./base/reset";
+
+input.ng-invalid {
+    border: 2px solid red
+}
+
+input.ng-empty {
+    border: 2px solid blue;
+}
+
+input.ng-valid {
+    border: 2px solid green;
+}
+
+.show-hide-eye {
+    filter: invert(1);
+    width: 30px;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+}
+
+.error-message {
+    color: red;
+}

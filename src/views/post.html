@@ -1,5 +1,5 @@
-<div ng-repeat='post in $ctrl.posts'>
-    <h2>{{post.userName}}</h2>
-    <h3>{{post.title}}</h3>
-    <p>{{post.content}}</p>
+<div class="post" ng-repeat='post in $ctrl.posts'>
+    <h2 class="post__userName">{{post.userName}}</h2>
+    <h3 class="post__title">{{post.title}}</h3>
+    <p class="post__content">{{post.content}}</p>
 </div>

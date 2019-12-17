@@ -8,8 +8,8 @@ const postsComponent =
       "<div id={{post.postId}} ng-repeat='post in $ctrl.posts'>" +
         "<h2>{{post.userName}}</h2>" +
         "<div ng-show={{post.isCurrentUser}}>" +
-          "<button ng-disabled='post.postId == $ctrl.editingId' ng-click='editPost(post.postId)'>Edit post</button>" +
-          "<button ng-click='removePost(post.postId)'>Remove post</button>" +
+          "<button class='btn' ng-disabled='post.postId == $ctrl.editingId' ng-click='editPost(post.postId)'>Edit post</button>" +
+          "<button class='btn' ng-click='removePost(post.postId)'>Remove post</button>" +
         "</div>" +
         "<h3>{{post.title}}</h3>" +
         "<p>{{post.content}}</p>" +

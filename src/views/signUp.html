@@ -4,38 +4,38 @@
     <form name="signUpForm">
         <h2>Sign Up</h2>
         <p class="error-message" ng-bind="errorMessage">{{}}</p>
-        <label>First Name
-            <em>*</em>
-            <input name="firstName" type="text" placeholder="Enter First Name" required ng-model="user.firstName"
-                ng-pattern="userNamePattern">
-        </label>
-        <label>Last Name
-            <em>*</em>
-            <input name="lastName" type="text" placeholder="Enter Last Name" required ng-model="user.lastName"
-                ng-pattern="userNamePattern">
-        </label>
-        <div>
-            <label>Password
-                <em>*</em>
-                <input name="passwordInput" type="password" placeholder="Enter Password" required
+        <div class="input">
+            <label class="input__label">First Name *
+                <input class="input__field" name="firstName" type="text" placeholder="Enter First Name" required
+                    ng-model="user.firstName" ng-pattern="userNamePattern">
+            </label class="input_label">
+        </div>
+        <div class="input">
+            <label class="input__label">Last Name *
+                <input class="input__field" name="lastName" type="text" placeholder="Enter Last Name" required
+                    ng-model="user.lastName" ng-pattern="userNamePattern">
+            </label>
+        </div>
+        <div class="input">
+            <label class="input__label">Password *
+                <input class="input__field" name="passwordInput" type="password" placeholder="Enter Password" required
                     ng-model="user.password" ng-pattern="userPasswPattern">
             </label>
-            <img class="show-hide-eye" src="../../src/img/hide.png" alt="eye" ng-click="showPassw($event)">
+            <img class="input__eye" src="../../src/img/hide.png" alt="eye" ng-click="showPassw($event)">
         </div>
-        <div>
-            <label>Repeat Password
-                <em>*</em>
-                <input name="repeatPasswordInput" type="password" placeholder="Repeat Password" required
-                    ng-disabled="signUpForm.passwordInput.$invalid" ng-model="user.repeatPassword"
+        <div class="input">
+            <label class="input__label">Repeat Password *
+                <input class="input__field" name="repeatPasswordInput" type="password" placeholder="Repeat Password"
+                    required ng-disabled="signUpForm.passwordInput.$invalid" ng-model="user.repeatPassword"
                     ng-pattern="userRepeatPasswPattern">
             </label>
-            <img class="show-hide-eye" src="../../src/img/hide.png" alt="eye" ng-click="showPassw($event)">
+            <img class="input__eye" src="../../src/img/hide.png" alt="eye" ng-click="showPassw($event)">
         </div>
-        <button type="submit" ng-disabled="signUpForm.$invalid" ng-click="signUp()">Sign Up</button>
+        <button ng-class="signUpForm.$invalid ? 'btn-disabled' : 'btn'" type="submit" ng-disabled="signUpForm.$invalid" ng-click="signUp()">Sign Up</button>
     </form>
     <div>
         <p>or</p>
-        <button type="button" ng-click="signInRedirect()">Sign In</button>
+        <button class="btn" type="button" ng-click="signInRedirect()">Sign In</button>
         <p>if you already have an account</p>
     </div>
 </div>

@@ -10,8 +10,8 @@ const postEditing =
         "<textarea id='title'>{{$ctrl.title}}</textarea>" +         
         "<label for='content'>Content</label>" +
         "<textarea id='content'>{{$ctrl.content}}</textarea>" +         
-        "<button ng-click='editingPost($event)'>Edit</button>" +
-        "<button ng-click='canselEditingPost()'>Cancel</button>" +
+        "<button class='btn' ng-click='editingPost($event)'>Edit</button>" +
+        "<button class='btn' ng-click='canselEditingPost()'>Cancel</button>" +
       "</div>",
 
     bindings: {

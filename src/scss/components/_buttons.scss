@@ -1,0 +1,15 @@
+.btn {
+  @include btn;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  background: $black;
+  color: $white;
+}
+
+.btn-disabled {
+  @include btn;
+  cursor: default;
+}

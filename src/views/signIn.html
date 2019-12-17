@@ -4,27 +4,29 @@
     <form name="signInForm">
         <h2>Sign In</h2>
         <p class="error-message" ng-bind="errorMessage">{{}}</p>
-        <label>First Name
-            <em>*</em>
-            <input name="firstName" type="text" placeholder="Enter First Name" required ng-model="user.firstName"
-                ng-pattern="userNamePattern">
-        </label>
-        <label>Last Name
-            <em>*</em>
-            <input name="LastName" type="text" placeholder="Enter Last Name" required ng-model="user.lastName"
-                ng-pattern="userNamePattern">
-        </label>
-        <div>
-            <label>Password
-                <em>*</em>
-                <input name="passwordInput" type="password" placeholder="Enter Password" required
+        <div class="input">
+            <label class="input_label">First Name *
+                <input class="input__field" name="firstName" type="text" placeholder="Enter First Name" required
+                    ng-model="user.firstName" ng-pattern="userNamePattern">
+            </label>
+        </div>
+        <div class="input">
+            <label class="input_label">Last Name *
+                <input class="input__field" name="LastName" type="text" placeholder="Enter Last Name" required
+                    ng-model="user.lastName" ng-pattern="userNamePattern">
+            </label>
+        </div>
+        <div class="input">
+            <label class="input_label">Password *
+                <input class="input__field" name="passwordInput" type="password" placeholder="Enter Password" required
                     ng-model="user.password" ng-pattern="userPasswPattern">
             </label>
-            <img class="show-hide-eye" src="../../src/img/hide.png" alt="eye" ng-click="showPassw($event)">
+            <img class="input__eye" src="../../src/img/hide.png" alt="eye" ng-click="showPassw($event)">
         </div>
-        <button type="submit" ng-disabled="signInForm.$invalid" ng-click="signIn()">Sign In</button>
+        <button ng-class="signInForm.$invalid ? 'btn-disabled' : 'btn'" type="submit" ng-disabled="signInForm.$invalid"
+            ng-click="signIn()">Sign In</button>
     </form>
     yw4jBU
     <p>or back to</p>
-    <button type="button" ng-click="signUpRedirect()">Sign Up</button>
+    <button class="btn" type="button" ng-click="signUpRedirect()">Sign Up</button>
 </div>

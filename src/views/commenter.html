@@ -1,15 +1,21 @@
-<img class="logo" src="../../src/img/logo.png" alt="logo">
-<h1>ComMEnteR</h1>
+<header-component></header-component>
 <div class="comPage" ng-controller="commenterCtrl">
     <p class="comPage__errorMessage">{{errorMessage}}</p>
-    <button class="btn" type="button" ng-click="logout()">Logout</button>
-    <button class="btn" ng-disabled="isCreatingPost" ng-click="addPost()">Add post</button>
+    <button ng-class="isCreatingPost? 'btn-disabled btn-big' : 'btn btn-big'" ng-disabled="isCreatingPost"
+        ng-click="addPost()">CREATE POST HERE</button>
     <div class="editing" ng-show="isAddingPost">
-        <input class="editing__title" type="text" placeholder="Add title to post" ng-model="postTitle">
-        <input class="editing__content" type="text" placeholder="Add content to post" ng-model="postContent">
-        <button class="btn" type="button" ng-click="createPost()">Add to wall</button>
-        <button class="btn" type="button" ng-click="canselCreatingPost()">Cancel</button>
+        <div class="input">
+            <input class="input__field noBorder" type="text" placeholder="Add title to post" ng-model="postTitle">
+        </div>
+        <div class="input">
+            <input class="input__field noBorder" type="text" placeholder="Add content to post" ng-model="postContent">
+        </div>
+        <div class="btn-position">
+            <button class="btn" type="button" ng-click="createPost()">Add to wall</button>
+            <button class="btn" type="button" ng-click="canselCreatingPost()">Cancel</button>
+        </div>
     </div>
 
     <posts-component currentUser="$ctrl.currentUser"></posts-component>
 </div>
+<footer-component></footer-component>

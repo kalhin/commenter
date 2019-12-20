@@ -1,0 +1,13 @@
+.textArea {
+  &__label {
+    font-size: $label-size;
+  }
+  &__field {
+    resize: none;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: $fields-text-size;
+    font-style: italic;
+  }
+}

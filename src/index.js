@@ -13,6 +13,8 @@ import commenterCtrl from "./js/controllers/commenterCtrl";
 
 import postsComponent from "./js/components/posts.component";
 import postEditing from "./js/components/post.editing";
+import headerComponent from "./js/components/header.component";
+import footerComponent from "./js/components/footer.component";
 
 
 
@@ -27,3 +29,5 @@ appModule.controller("commenterCtrl", commenterCtrl);
 
 appModule.component("postsComponent", postsComponent);
 appModule.component("postEditing", postEditing);
+appModule.component("headerComponent", headerComponent);
+appModule.component("footerComponent", footerComponent);

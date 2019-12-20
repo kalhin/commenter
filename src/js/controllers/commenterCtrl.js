@@ -62,14 +62,6 @@ const commenterCtrl = function($scope, $rootScope, $location, $route) {
     $scope.postTitle = "";
     $scope.postContent = "";
   }
-
-  $scope.logout = () => {
-    postRequest("currentUser", JSON.stringify({})).then(() => {
-      localStorage.setItem("isUserLogin", false);
-      $location.path("/");
-      $scope.$apply();
-    });
-  };
 };
 
 export default commenterCtrl;

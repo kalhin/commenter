@@ -5,15 +5,19 @@ const postsComponent =
   {
     // templateUrl: "../../views/post",
     template:
-      "<div id={{post.postId}} ng-repeat='post in $ctrl.posts'>" +
-        "<h2>{{post.userName}}</h2>" +
+      "<div class='post' id={{post.postId}} ng-repeat='post in $ctrl.posts'>" +
+      "<div class='post__userBlock'>" +
+        "<h2 class='post__userName'>{{post.userName}}</h2>" +
         "<div ng-show={{post.isCurrentUser}}>" +
-          "<button class='btn' ng-disabled='post.postId == $ctrl.editingId' ng-click='editPost(post.postId)'>Edit post</button>" +
-          "<button class='btn' ng-click='removePost(post.postId)'>Remove post</button>" +
+          `<button ng-class="post.postId == $ctrl.editingId ? 'btn-disabled' : 'btn btn-big'" ng-disabled="post.postId == $ctrl.editingId" ng-click="editPost(post.postId)">Edit post</button>` +
+          "<button class='btn btn-big' ng-click='removePost(post.postId)'>Remove post</button>" +
         "</div>" +
-        "<h3>{{post.title}}</h3>" +
-        "<p>{{post.content}}</p>" +
-        "<post-editing currentUser='$ctrl.currentUser' id='$ctrl.editingId' title='post.title' content='post.content' ng-if='post.postId == $ctrl.editingId'></post-editing>" +
+      "</div>" +
+      "<div class='post__postBlock'>" +
+      "<h3 class='post__title'>{{post.title}}</h3>" +
+      "<p class='post__content'>{{post.content}}</p>" +
+      "<post-editing currentUser='$ctrl.currentUser' id='$ctrl.editingId' title='post.title' content='post.content' ng-if='post.postId == $ctrl.editingId'></post-editing>" +
+      "</div>" +
       "</div>",
 
       bindings: {
@@ -22,8 +26,6 @@ const postsComponent =
 
     controller: function postCtrl($scope, $route) {
       this.editingId;
-      console.log(111, this.currentUser)
-      // this.currentUser;
 
       getRequest("currentUser").then(data => {
         this.currentUserId = data.id;

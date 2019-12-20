@@ -6,10 +6,14 @@ const postEditing =
     // templateUrl: "../../views/post",
     template:
       "<div>" +
-        "<label for='title'>Title</label>" +
-        "<textarea id='title'>{{$ctrl.title}}</textarea>" +         
-        "<label for='content'>Content</label>" +
-        "<textarea id='content'>{{$ctrl.content}}</textarea>" +         
+        "<div class='textArea'>" +
+          "<label class='textArea__label' for='title'>Title</label>" +
+          "<textarea class='textArea__field' rows='1' id='title'>{{$ctrl.title}}</textarea>" +         
+        "</div>" +
+        "<div class='textArea'>" +
+          "<label class='textArea__label' for='content'>Content</label>" +
+          "<textarea class='textArea__field' rows='10' id='content'>{{$ctrl.content}}</textarea>" + 
+        "</div>" +        
         "<button class='btn' ng-click='editingPost($event)'>Edit</button>" +
         "<button class='btn' ng-click='canselEditingPost()'>Cancel</button>" +
       "</div>",

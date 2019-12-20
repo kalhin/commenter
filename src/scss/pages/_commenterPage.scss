@@ -1,0 +1,8 @@
+.comPage {
+    &__errorMessage {
+        font-size: $error-message-size;
+        text-align: center;
+        color: $red;
+        height: 32px;
+    }
+}

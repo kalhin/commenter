@@ -1,11 +1,22 @@
 .post {
-    &__userName {
-        font-size: 2em;
-    }
-    &__title {
-        font-size: 1.8em;
-    }
-    &__content {
-        font-size: 1.3em;
-    }
+  display: flex;
+  margin: 5% -3%;
+  &__userBlock {
+    padding: 0 3%;
+    width: 25%;
+  }
+  &__postBlock {
+    padding: 0 3%;
+    width: 75%;
+  }
+  &__userName {
+    font-size: 2em;
+  }
+  &__title {
+    font-size: 1.8em;
+  }
+  &__content {
+    font-size: 1.3em;
+    text-align: justify;
+  }
 }

@@ -1,4 +1,4 @@
-<header-component></header-component>
+<header-component user="currentUser"></header-component>
 <div class="comPage" ng-controller="commenterCtrl">
     <p class="comPage__errorMessage">{{errorMessage}}</p>
     <button ng-class="isCreatingPost? 'btn-disabled btn-big' : 'btn btn-big'" ng-disabled="isCreatingPost"
@@ -16,6 +16,6 @@
         </div>
     </div>
 
-    <posts-component currentUser="$ctrl.currentUser"></posts-component>
+    <posts-component user="currentUser"></posts-component>
 </div>
 <footer-component></footer-component>

@@ -1,4 +1,5 @@
 .comPage {
+    min-height: calc(100vh - 175px); //for bottom footer position
     &__errorMessage {
         font-size: $error-message-size;
         text-align: center;

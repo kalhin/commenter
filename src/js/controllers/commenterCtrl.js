@@ -1,18 +1,17 @@
 import { postRequest, getRequest } from "../API/api";
 
 const commenterCtrl = function($scope, $rootScope, $location, $route) {
-
   $scope.postTitle = "";
   $scope.postContent = "";
   $scope.isCreatingPost = false;
   $scope.isAddingPost = false;
   $scope.errorMessage = "";
+  $scope.currentUser;
   const errorMessage =
     "If you want add post, you should enter post title and content";
 
-  let currentUser;
-  getRequest("currentUser").then(data => {
-    currentUser = data;
+  getRequest("currentUser").then(data => {    
+    $scope.currentUser = data;
   });
 
   $scope.addPost = () => {
@@ -28,10 +27,10 @@ const commenterCtrl = function($scope, $rootScope, $location, $route) {
     if (title !== "" && content !== "") {
       getRequest("posts").then(data => {
         for (let i = 0; i < data.length; i++) {
-          if (data[i].id === currentUser.id) {
+          if (data[i].id === $scope.currentUser.id) {
             const newPost = {
-              postId: currentUser.id + alphabet[Math.floor(Math.random() * alphabet.length)] + Math.floor(Math.random() * 10), //generate ID like '2f5'
-              userName: `${currentUser.firstName} ${currentUser.lastName}`,
+              postId: $scope.currentUser.id + alphabet[Math.floor(Math.random() * alphabet.length)] + Math.floor(Math.random() * 10), //generate ID like '2f5'
+              userName: `${$scope.currentUser.firstName} ${$scope.currentUser.lastName}`,
               title: title,
               content: content,
               comments: []

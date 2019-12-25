@@ -9,47 +9,46 @@ const postsComponent =
       "<div class='post__userBlock'>" +
         "<h2 class='post__userName'>{{post.userName}}</h2>" +
         "<div ng-show={{post.isCurrentUser}}>" +
-          `<button ng-class="post.postId == $ctrl.editingId ? 'btn-disabled' : 'btn btn-big'" ng-disabled="post.postId == $ctrl.editingId" ng-click="editPost(post.postId)">Edit post</button>` +
+          `<button ng-class="post.postId == $ctrl.editingId ? 'btn-disabled btn-big' : 'btn btn-big'" ng-disabled="post.postId == $ctrl.editingId" ng-click="editPost(post.postId, $event)">Edit post</button>` +
           "<button class='btn btn-big' ng-click='removePost(post.postId)'>Remove post</button>" +
         "</div>" +
       "</div>" +
       "<div class='post__postBlock'>" +
       "<h3 class='post__title'>{{post.title}}</h3>" +
       "<p class='post__content'>{{post.content}}</p>" +
-      "<post-editing currentUser='$ctrl.currentUser' id='$ctrl.editingId' title='post.title' content='post.content' ng-if='post.postId == $ctrl.editingId'></post-editing>" +
+      "<post-editing  id='$ctrl.editingId' title='post.title' content='post.content' ng-if='post.postId == $ctrl.editingId'></post-editing>" +
       "</div>" +
-      "</div>",
-
-      bindings: {
-        currentUser: "="
-      },  
+      "</div>",  
 
     controller: function postCtrl($scope, $route) {
-      this.editingId;
+      $scope.currentUserId;
 
-      getRequest("currentUser").then(data => {
-        this.currentUserId = data.id;
-        // console.log(this.currentUserId)
-        getRequest("posts").then(data => {
-          let printData = [];
-          data.forEach(user => {
-            user.posts.forEach(post => {
-              if (user.id === this.currentUserId) {
-                post.isCurrentUser = true;
-                printData.push(post);
-              } else {
-                post.isCurrentUser = false;
-                printData.push(post);
-              }
+      $scope.$parent.$watch("currentUser", (newValue, oldValue) => {
+        if (newValue !== oldValue) {
+          $scope.currentUserId = newValue.id
+
+          getRequest("posts").then(data => {
+            let printData = [];
+            data.forEach(user => {
+              user.posts.forEach(post => {
+                if (user.id === $scope.currentUserId) {
+                  post.isCurrentUser = true;
+                  printData.push(post);
+                } else {
+                  post.isCurrentUser = false;
+                  printData.push(post);
+                }
+              });
             });
+  
+            this.posts = printData;
+            $scope.$apply();
           });
-
-          this.posts = printData;
-          $scope.$apply();
-        });
+        }
       });
 
-      $scope.editPost = currentPostId => {
+      $scope.editPost = (currentPostId, $event) => {
+        // console.log($event.target)
         this.editingId = currentPostId;
       };
 
@@ -57,7 +56,7 @@ const postsComponent =
 
         getRequest("posts").then(data => {
           for (let i = 0; i < data.length; i++) {
-            if (data[i].id == this.currentUserId) {
+            if (data[i].id == $scope.currentUserId) {
               for (let j = 0; j < data[i].posts.length; j++) {
                 if (data[i].posts[j].postId == currentPostId) {
                   data[i].posts.splice(j, 1);

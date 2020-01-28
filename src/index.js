@@ -6,6 +6,8 @@ import "./scss/main.scss";
 import "./js/controllers/initCtrl";
 import "./services/dataBaseService";
 
+import userService from "./js/factory/factory";
+
 import mainPageCtrl from "./js/controllers/mainPageCtrl";
 import signUpCtrl from "./js/controllers/signUpCtrl";
 import signInCtrl from "./js/controllers/signInCtrl";
@@ -21,6 +23,8 @@ import footerComponent from "./js/components/footer.component";
 const appModule = angular.module("myApp", [ngRoute]);
 
 appModule.config(router);
+
+appModule.factory("userService", userService);
 
 appModule.controller("mainPageCtrl", mainPageCtrl);
 appModule.controller("signUpCtrl", signUpCtrl);

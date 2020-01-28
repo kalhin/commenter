@@ -1,10 +1,12 @@
 import { postRequest, getRequest } from "../API/api";
+// import  userService from "../factory/factory";
 
-const commenterCtrl = function($scope, $rootScope, $location, $route) {
+const commenterCtrl = function(userService, $scope, $rootScope, $location, $route) {
   $scope.postTitle = "";
   $scope.postContent = "";
   $scope.isCreatingPost = false;
   $scope.isAddingPost = false;
+  $scope.isPosting = false;
   $scope.errorMessage = "";
   $scope.currentUser;
   const errorMessage =
@@ -20,6 +22,7 @@ const commenterCtrl = function($scope, $rootScope, $location, $route) {
   }
 
   $scope.createPost = () => {
+    $scope.isPosting = true;
     const title = $scope.postTitle;
     const content = $scope.postContent;
     const alphabet = "abcdefghijklmnopqrstuvwxyz";

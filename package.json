@@ -4,7 +4,7 @@
   "description": "task for first JPR",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --open --mode development",
+    "dev": "webpack-dev-server --open --mode development --watch",
     "build": "webpack --mode production"
   },
   "author": "Kalhin Roman",
@@ -19,7 +19,7 @@
     "path": "^0.12.7",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
-    "webpack": "^4.41.2",
+    "webpack": "^4.41.5",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0"
   },

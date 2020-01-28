@@ -11,7 +11,7 @@
             <input class="input__field noBorder" type="text" placeholder="Add content to post" ng-model="postContent">
         </div>
         <div class="btn-position">
-            <button class="btn" type="button" ng-click="createPost()">Add to wall</button>
+            <button ng-class="isPosting ? 'btn-disabled' : 'btn'" ng-disabled="isPosting" type="button" ng-click="createPost()">Add to wall</button>
             <button class="btn" type="button" ng-click="canselCreatingPost()">Cancel</button>
         </div>
     </div>

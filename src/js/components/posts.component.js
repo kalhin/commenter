@@ -6,22 +6,23 @@ const postsComponent =
     // templateUrl: "../../views/post",
     template:
       "<div class='post' id={{post.postId}} ng-repeat='post in $ctrl.posts'>" +
-      "<div class='post__userBlock'>" +
-        "<h2 class='post__userName'>{{post.userName}}</h2>" +
-        "<div ng-show={{post.isCurrentUser}}>" +
-          `<button ng-class="post.postId == $ctrl.editingId ? 'btn-disabled btn-big' : 'btn btn-big'" ng-disabled="post.postId == $ctrl.editingId" ng-click="editPost(post.postId, $event)">Edit post</button>` +
-          "<button class='btn btn-big' ng-click='removePost(post.postId)'>Remove post</button>" +
+        "<div class='post__userBlock'>" +
+          "<h2 class='post__userName'>{{post.userName}}</h2>" +
+          "<div ng-show={{post.isCurrentUser}}>" +
+            `<button ng-class="post.postId == $ctrl.editingId ? 'btn-disabled btn-big' : 'btn btn-big'" ng-disabled="post.postId == $ctrl.editingId" ng-click="editPost(post.postId, $event)">Edit post</button>` +
+            `<button ng-class="isRemovingPost ? 'btn-disabled btn-big' : 'btn btn-big'" ng-click='removePost(post.postId)' ng-disabled='isRemovingPost'>Remove post</button>` +
+          "</div>" +
         "</div>" +
-      "</div>" +
-      "<div class='post__postBlock'>" +
-      "<h3 class='post__title'>{{post.title}}</h3>" +
-      "<p class='post__content'>{{post.content}}</p>" +
-      "<post-editing  id='$ctrl.editingId' title='post.title' content='post.content' ng-if='post.postId == $ctrl.editingId'></post-editing>" +
-      "</div>" +
+        "<div class='post__postBlock'>" +
+          "<h3 class='post__title'>{{post.title}}</h3>" +
+          "<p class='post__content'>{{post.content}}</p>" +
+          "<post-editing  id='$ctrl.editingId' ng-if='post.postId == $ctrl.editingId'></post-editing>" +
+        "</div>" +
       "</div>",  
 
     controller: function postCtrl($scope, $route) {
       $scope.currentUserId;
+      $scope.isRemovingPost = false;
 
       $scope.$parent.$watch("currentUser", (newValue, oldValue) => {
         if (newValue !== oldValue) {
@@ -48,12 +49,11 @@ const postsComponent =
       });
 
       $scope.editPost = (currentPostId, $event) => {
-        // console.log($event.target)
         this.editingId = currentPostId;
       };
 
       $scope.removePost = currentPostId => {
-
+        $scope.isRemovingPost = true;
         getRequest("posts").then(data => {
           for (let i = 0; i < data.length; i++) {
             if (data[i].id == $scope.currentUserId) {

@@ -1,4 +1,5 @@
 @import "./base/reset";
+@import "./base/base";
 
 @import "./abstracts/variables";
 @import "./abstracts/mixins";
@@ -12,6 +13,8 @@
 @import "./layout/footer";
 
 @import "./pages/commenterPage";
+@import "./pages/signUpPage";
+@import "./pages/signInPage";
 
 body {
   font-family: "IBM Plex Sans Condensed", sans-serif;

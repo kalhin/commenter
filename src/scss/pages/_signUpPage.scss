@@ -1,0 +1,5 @@
+.signUpForm {
+    &__errorMessage {
+        @include error-message;
+    }
+}

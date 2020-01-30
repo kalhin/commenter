@@ -1,5 +1,4 @@
-const dataBase = [
-  {
+const dataBase = [{
     id: 1,
     password: "sSuysSRR",
     first_name: "Allis",
@@ -18,8 +17,7 @@ const dataBase = [
     password: "bUWzn9VvpZqk",
     first_name: "Willette",
     last_name: "Wentworth",
-    avatar:
-      "https://robohash.org/maioresvoluptasdeleniti.png?size=50x50&set=set1"
+    avatar: "https://robohash.org/maioresvoluptasdeleniti.png?size=50x50&set=set1"
   },
   {
     id: 4,
@@ -33,8 +31,7 @@ const dataBase = [
     password: "w4Q7FvcaU",
     first_name: "Camellia",
     last_name: "Feragh",
-    avatar:
-      "https://robohash.org/occaecatifugitpariatur.png?size=50x50&set=set1"
+    avatar: "https://robohash.org/occaecatifugitpariatur.png?size=50x50&set=set1"
   },
   {
     id: 6,
@@ -75,25 +72,22 @@ const dataBase = [
 
 const postsDataBase = [
   {
-    id: 2,
-    posts: [{
-      postId: "2s7",
-      userName: "Meier MacIlriach",
-      title: "What is trail running",
-      content: "Trail running is a sport-activity which combines running, and, where there are steep gradients, hiking, that is run on any unpaved surface. It is similar to both mountain and fell running (also known as hill running). Mountain running may, however, include paved sections. Trail running normally takes place in warm climates, or on good paths, or tracks which are relatively easy to follow, and does not necessarily involve the significant amounts of ascent, or need for navigating skills, normal in fell running.[2] Unlike road running and track running it generally takes place on hiking trails, often in mountainous terrain, where there can be much larger ascents and descents. It is difficult to definitively distinguish trail running from cross country running. In general, however, cross country is an IAAF-governed discipline that is typically raced over shorter distances.",
-      comments: []
-    }]
+    dateOfCreating: "1995-12-17T03:24:00",
+    userId: 1,
+    postId: "2s7",
+    title: "What is trail running",
+    content: "at is typically raced over shorter distances.",
   },
   {
-    id: 10,
-    posts: [{
-      postId: "10r3",
-      userName: "Val McGlashan",
-      title: "Cooking cream",
-      content: "The half-and-half cream is made up of half cream and half whole-milk. The fat content is usually 12% yet can vary from 10% to 18%. The half-and-half is more commonly used a creamer for tea or coffee. The lower fat content will mean it cannot be whipped but can be used as a substitute for whipping or light cream in a few recipes.",
-      comments: []
-    }]
-  }  
+    dateOfCreating: "1995-12-17T03:25:00",
+    userId: 2,
+    postId: "2s7",
+    title: "What is trail running",
+    content: "is typically raced over shorter distances.",
+  }
 ];
 
-export { dataBase, postsDataBase };
+export {
+  dataBase,
+  postsDataBase
+};

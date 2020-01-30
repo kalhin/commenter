@@ -1,10 +1,20 @@
-import { dataBase, postsDataBase } from "./dataBase";
+// import { dataBase, postsDataBase } from "./dataBase";
+
+// if (localStorage.getItem("users") === null) {
+//   localStorage.setItem("users", JSON.stringify(dataBase));
+// }
+
+// if (localStorage.getItem("posts") === null) {
+//   localStorage.setItem("posts", JSON.stringify(postsDataBase));
+// }
 
 if (localStorage.getItem("users") === null) {
-  localStorage.setItem("users", JSON.stringify(dataBase));
+  const usersDataBase = [];
+  localStorage.setItem("users", JSON.stringify(usersDataBase))
 }
 
 if (localStorage.getItem("posts") === null) {
+  const postsDataBase = [];
   localStorage.setItem("posts", JSON.stringify(postsDataBase));
 }
 

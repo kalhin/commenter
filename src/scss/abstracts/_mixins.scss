@@ -12,3 +12,10 @@
     font-size: $fields-text-size;
     box-sizing: border-box;
 }
+
+@mixin error-message {
+    font-size: $error-message-size;
+    text-align: center;
+    color: $red;
+    height: 32px;
+}

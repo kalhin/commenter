@@ -1,7 +1,10 @@
-import { postRequest, getRequest } from "../API/api";
+import {
+  postRequest,
+  getRequest
+} from "../API/api";
 // import  userService from "../factory/factory";
 
-const commenterCtrl = function(userService, $scope, $rootScope, $location, $route) {
+const commenterCtrl = function (userService, $scope, $rootScope, $location, $route) {
   $scope.postTitle = "";
   $scope.postContent = "";
   $scope.isCreatingPost = false;
@@ -12,8 +15,9 @@ const commenterCtrl = function(userService, $scope, $rootScope, $location, $rout
   const errorMessage =
     "If you want add post, you should enter post title and content";
 
-  getRequest("currentUser").then(data => {    
+  getRequest("currentUser").then(data => {
     $scope.currentUser = data;
+    $scope.$apply();
   });
 
   $scope.addPost = () => {
@@ -29,28 +33,59 @@ const commenterCtrl = function(userService, $scope, $rootScope, $location, $rout
 
     if (title !== "" && content !== "") {
       getRequest("posts").then(data => {
-        for (let i = 0; i < data.length; i++) {
-          if (data[i].id === $scope.currentUser.id) {
-            const newPost = {
-              postId: $scope.currentUser.id + alphabet[Math.floor(Math.random() * alphabet.length)] + Math.floor(Math.random() * 10), //generate ID like '2f5'
-              userName: `${$scope.currentUser.firstName} ${$scope.currentUser.lastName}`,
-              title: title,
-              content: content,
-              comments: []
-            };
-            data[i].posts.unshift(newPost);
-            postRequest("posts", JSON.stringify(data)).then(() => {
-              $route.reload();
-            });
+        const dateOfCreating = new Date();
+        if (!data.length) {
+          const newPost = {
+            dateOfCreating: dateOfCreating,
+            userId: $scope.currentUser.id,
+            postId: $scope.currentUser.id + alphabet[Math.floor(Math.random() * alphabet.length)] + Math.floor(Math.random() * 10), //generate ID like '2f5'
+            // userName: `${$scope.currentUser.firstName} ${$scope.currentUser.lastName}`,
+            title: title,
+            content: content
+          };
+          data.push(newPost);
+          postRequest("posts", JSON.stringify(data)).then(() => {
+            $route.reload();
+          });
+        } else if (!data.find(index => index.id === $scope.currentUser.id)) {
+          const newPost = {
+            dateOfCreating: dateOfCreating,
+            userId: $scope.currentUser.id,
+            postId: $scope.currentUser.id + alphabet[Math.floor(Math.random() * alphabet.length)] + Math.floor(Math.random() * 10), //generate ID like '2f5'
+            // userName: `${$scope.currentUser.firstName} ${$scope.currentUser.lastName}`,
+            title: title,
+            content: content
+          };
+          data.unshift(newPost);
+          postRequest("posts", JSON.stringify(data)).then(() => {
+            $route.reload();
+          });
+        } else {
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].id === $scope.currentUser.id) {
+              const newPost = {
+                dateOfCreating: dateOfCreating,
+                userId: $scope.currentUser.id,
+                postId: $scope.currentUser.id + alphabet[Math.floor(Math.random() * alphabet.length)] + Math.floor(Math.random() * 10), //generate ID like '2f5'
+                // userName: `${$scope.currentUser.firstName} ${$scope.currentUser.lastName}`,
+                title: title,
+                content: content
+              };
+              data[i].posts.unshift(newPost);
+              postRequest("posts", JSON.stringify(data)).then(() => {
+                $route.reload();
+              });
 
-            break;
-          } else {
-            continue;
+              break;
+            } else {
+              continue;
+            }
           }
         }
       });
     } else {
       $scope.errorMessage = errorMessage;
+      $scope.isPosting = false;
       setTimeout(() => {
         $scope.errorMessage = "";
         $scope.$apply();
@@ -63,6 +98,7 @@ const commenterCtrl = function(userService, $scope, $rootScope, $location, $rout
     $scope.isAddingPost = false;
     $scope.postTitle = "";
     $scope.postContent = "";
+    $scope.isPosting = false;
   }
 };
 

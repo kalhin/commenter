@@ -1,7 +1,12 @@
 <div ng-controller="signInCtrl">
+    <div class="imgContainer">
+        <img class="logo" src="../../src/img/logo.png" alt="logo">
+    </div>
+    <h1>ComMEnteR</h1>
     <form name="signInForm">
         <h2>Sign In</h2>
-        <p class="error-message" ng-bind="errorMessage">{{}}</p>
+        <p>Please fill in this form to enter account.</p>
+        <p class="signInForm__errorMessage" ng-bind="errorMessage"></p>
         <div class="input">
             <label class="input_label">First Name *
                 <input class="input__field" name="firstName" type="text" placeholder="Enter First Name" required
@@ -24,7 +29,7 @@
         <button ng-class="signInForm.$invalid ? 'btn-disabled' : 'btn'" type="submit" ng-disabled="signInForm.$invalid"
             ng-click="signIn()">Sign In</button>
     </form>
-    yw4jBU
+
     <p>or back to</p>
     <button class="btn" type="button" ng-click="signUpRedirect()">Sign Up</button>
 </div>

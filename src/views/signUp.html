@@ -1,9 +1,12 @@
 <div ng-controller="signUpCtrl">
-    <img class="logo" src="../../src/img/logo.png" alt="logo">
+    <div class="imgContainer">
+        <img class="logo" src="../../src/img/logo.png" alt="logo">
+    </div>
     <h1>ComMEnteR</h1>
     <form name="signUpForm">
         <h2>Sign Up</h2>
-        <p class="error-message" ng-bind="errorMessage">{{}}</p>
+        <p>Please fill in this form to create an account.</p>
+        <p class="signUpForm__errorMessage" ng-bind="errorMessage"></p>
         <div class="input">
             <label class="input__label">First Name *
                 <input class="input__field" name="firstName" type="text" placeholder="Enter First Name" required
@@ -31,7 +34,8 @@
             </label>
             <img class="input__eye" src="../../src/img/hide.png" alt="eye" ng-click="showPassw($event)">
         </div>
-        <button ng-class="signUpForm.$invalid ? 'btn-disabled' : 'btn'" type="submit" ng-disabled="signUpForm.$invalid" ng-click="signUp()">Sign Up</button>
+        <button ng-class="signUpForm.$invalid ? 'btn-disabled' : 'btn'" type="submit" ng-disabled="signUpForm.$invalid"
+            ng-click="signUp()">Sign Up</button>
     </form>
     <div>
         <p>or</p>

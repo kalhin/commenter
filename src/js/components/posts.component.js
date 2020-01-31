@@ -17,7 +17,7 @@ const postsComponent =
         "<h2 class='post__userName'>{{post.userName}}</h2>" +
         "<div ng-show={{post.isCurrentUser}}>" +
         `<button ng-class="post.postId == $ctrl.editingId ? 'btn-disabled btn-big' : 'btn btn-big'" ng-disabled="post.postId == $ctrl.editingId" ng-click="editPost(post.postId, $event)">Edit post</button>` +
-        `<button ng-class="isRemovingPost ? 'btn-disabled btn-big' : 'btn btn-big'" ng-click='removePost(post.postId)' ng-disabled='isRemovingPost'>Remove post</button>` +
+        `<button  class='btn btn-big' ng-click='removePost(post.postId, $event)'>Remove post</button>` +
         "</div>" +
         "</div>" +
         "<div class='post__postBlock'>" +
@@ -33,7 +33,6 @@ const postsComponent =
 
       controller: function postCtrl($scope, $route) {
         $scope.currentUserId;
-        $scope.isRemovingPost = false;
         $scope.isCommenting = false;
 
         $scope.$parent.$watch("currentUser", (newValue, oldValue) => {
@@ -74,9 +73,15 @@ const postsComponent =
           this.editingId = currentPostId;
         };
 
-        $scope.removePost = currentPostId => {
+        $scope.removePost = (currentPostId, $event) => {
 
-          $scope.isRemovingPost = true;
+          const currentBtn = $event.target;
+          currentBtn.setAttribute("disabled", true);
+          currentBtn.className = "btn-big btn-disabled";
+          const editBtn = currentBtn.parentElement.firstChild;
+          editBtn.setAttribute("disabled", true);
+          editBtn.className = "btn-big btn-disabled";
+
           getRequest("posts").then(data => {
             for (let i = 0; i < data.length; i++) {
               if (data[i].postId == currentPostId) {

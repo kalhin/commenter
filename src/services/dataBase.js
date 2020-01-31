@@ -87,7 +87,27 @@ const postsDataBase = [
   }
 ];
 
+const commentsDataBase = [
+  {
+    dateOfCreating: "1995-12-17T03:24:00",
+    userId: 1,
+    postId: "2s7",
+    commentId: "8y4",
+    whoLeaveComment: "Kalhin Roman",
+    content: "at is typically raced over shorter distances.",
+  },
+  {
+    dateOfCreating: "1995-12-17T03:25:00",
+    userId: 2,
+    postId: "2s7",
+    commentId: "0m9",
+    whoLeaveComment: "Kalhin Roman",
+    content: "is typically raced over shorter distances.",
+  }
+];
+
 export {
   dataBase,
-  postsDataBase
+  postsDataBase,
+  commentsDataBase
 };

@@ -24,10 +24,14 @@ const postsComponent =
         "<h3 class='post__title'>{{post.title}}</h3>" +
         "<p class='post__content'>{{post.content}}</p>" +
         "<post-editing  id='$ctrl.editingId' ng-if='post.postId == $ctrl.editingId'></post-editing>" +
-        "<div class='btn-position'>" +
-        `<button ng-class="isCommenting ? 'btn-disabled' : 'btn'" ng-if='!post.isCurrentUser' ng-disabled='isCommenting' ng-click='commentPost()'>Leave comment</button>` +
+        "<div class='comment'>" +
+        "<p class='comment__userName'>{{post.whoLeaveComment}}</p>" +
+        "<p class='comment__content'>{{post.commentContent}}</p>" +
         "</div>" +
-        "<post-commenting user='$ctrl.user' id='post.postId' ng-if='isCommenting && !post.isCurrentUser'></post-commenting>" +
+        "<div class='btn-position'>" +
+        `<button ng-class="isCommenting ? 'btn-disabled' : 'btn'" ng-if='!post.isCurrentUser' ng-disabled='isCommenting' ng-click='leaveCommentPost()'>Leave comment</button>` +
+        "</div>" +
+        "<post-commenting user='$ctrl.user' postDd='post.postId' commentId='' ng-if='isCommenting && !post.isCurrentUser'></post-commenting>" +
         "</div>" +
         "</div>",
 
@@ -39,31 +43,34 @@ const postsComponent =
           if (newValue !== oldValue) {
             $scope.currentUserId = newValue.id
             getRequest("users").then(userData => {
-              getRequest("posts").then(postData => {
+              getRequest("comments").then(commentsData => {
+                getRequest("posts").then(postData => {
+                  console.log(commentsData)
 
-                // sort surrent user posts to top of list (need add post create date)
-                // const currentUserAllPosts = data.find(index => index.id === $scope.currentUser.id);
-                // data.unshift(currentUserAllPosts);
-                // const currentUserAllPostsIndex = data.indexOf(currentUserAllPosts, 1);
-                // data.splice(currentUserAllPostsIndex, 1)
+                  // sort surrent user posts to top of list (need add post create date)
+                  // const currentUserAllPosts = data.find(index => index.id === $scope.currentUser.id);
+                  // data.unshift(currentUserAllPosts);
+                  // const currentUserAllPostsIndex = data.indexOf(currentUserAllPosts, 1);
+                  // data.splice(currentUserAllPostsIndex, 1)
 
-                let printData = [];
-                postData.forEach(post => {
-                  if (post.userId === $scope.currentUserId) {
-                    post.isCurrentUser = true;
-                    const iterateUser = userData.find(item => item.id === post.userId);
-                    post.userName = `${iterateUser.first_name} ${iterateUser.last_name}`;
-                    printData.push(post);
-                  } else {
-                    post.isCurrentUser = false;
-                    const iterateUser = userData.find(item => item.id === post.userId);
-                    post.userName = `${iterateUser.first_name} ${iterateUser.last_name}`;
-                    printData.push(post);
-                  }
+                  let printData = [];
+                  postData.forEach(post => {
+                    if (post.userId === $scope.currentUserId) {
+                      post.isCurrentUser = true;
+                      const iterateUser = userData.find(item => item.id === post.userId);
+                      post.userName = `${iterateUser.first_name} ${iterateUser.last_name}`;
+                      printData.push(post);
+                    } else {
+                      post.isCurrentUser = false;
+                      const iterateUser = userData.find(item => item.id === post.userId);
+                      post.userName = `${iterateUser.first_name} ${iterateUser.last_name}`;
+                      printData.push(post);
+                    }
+                  });
+
+                  this.posts = printData;
+                  $scope.$apply();
                 });
-
-                this.posts = printData;
-                $scope.$apply();
               });
             });
           }
@@ -97,7 +104,7 @@ const postsComponent =
           });
         };
 
-        $scope.commentPost = () => {
+        $scope.leaveCommentPost = () => {
           $scope.isCommenting = true;
         }
       }

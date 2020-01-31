@@ -18,6 +18,11 @@ if (localStorage.getItem("posts") === null) {
   localStorage.setItem("posts", JSON.stringify(postsDataBase));
 }
 
+if (localStorage.getItem("comments") === null) {
+  const postsDataBase = [];
+  localStorage.setItem("comments", JSON.stringify(postsDataBase));
+}
+
 const setDataBaseToLocalStorage = (key, data) => {
   localStorage.removeItem(key);
   localStorage.setItem(key, JSON.stringify(data));

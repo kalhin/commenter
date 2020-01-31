@@ -4,7 +4,8 @@ const postCommenting =
   ("postCommenting",
   {
     bindings: {
-      id: "=",
+      postId: "=",
+      commentId: "=",
       user: "<"
     },
 

@@ -1,10 +1,13 @@
-import {
-  postRequest,
-  getRequest
-} from "../API/api";
+import { postRequest, getRequest } from "../API/api";
 // import  userService from "../factory/factory";
 
-const commenterCtrl = function (userService, $scope, $rootScope, $location, $route) {
+const commenterCtrl = function(
+  userService,
+  $scope,
+  $rootScope,
+  $location,
+  $route
+) {
   $scope.postTitle = "";
   $scope.postContent = "";
   $scope.isCreatingPost = false;
@@ -23,7 +26,7 @@ const commenterCtrl = function (userService, $scope, $rootScope, $location, $rou
   $scope.addPost = () => {
     $scope.isCreatingPost = true;
     $scope.isAddingPost = true;
-  }
+  };
 
   $scope.createPost = () => {
     $scope.isPosting = true;
@@ -38,8 +41,10 @@ const commenterCtrl = function (userService, $scope, $rootScope, $location, $rou
           const newPost = {
             dateOfCreating: dateOfCreating,
             userId: $scope.currentUser.id,
-            postId: $scope.currentUser.id + alphabet[Math.floor(Math.random() * alphabet.length)] + Math.floor(Math.random() * 10), //generate ID like '2f5'
-            // userName: `${$scope.currentUser.firstName} ${$scope.currentUser.lastName}`,
+            postId:
+              $scope.currentUser.id +
+              alphabet[Math.floor(Math.random() * alphabet.length)] +
+              Math.floor(Math.random() * 10), //generate ID like '2f5'
             title: title,
             content: content
           };
@@ -51,7 +56,10 @@ const commenterCtrl = function (userService, $scope, $rootScope, $location, $rou
           const newPost = {
             dateOfCreating: dateOfCreating,
             userId: $scope.currentUser.id,
-            postId: $scope.currentUser.id + alphabet[Math.floor(Math.random() * alphabet.length)] + Math.floor(Math.random() * 10), //generate ID like '2f5'
+            postId:
+              $scope.currentUser.id +
+              alphabet[Math.floor(Math.random() * alphabet.length)] +
+              Math.floor(Math.random() * 10), //generate ID like '2f5'
             // userName: `${$scope.currentUser.firstName} ${$scope.currentUser.lastName}`,
             title: title,
             content: content
@@ -66,7 +74,10 @@ const commenterCtrl = function (userService, $scope, $rootScope, $location, $rou
               const newPost = {
                 dateOfCreating: dateOfCreating,
                 userId: $scope.currentUser.id,
-                postId: $scope.currentUser.id + alphabet[Math.floor(Math.random() * alphabet.length)] + Math.floor(Math.random() * 10), //generate ID like '2f5'
+                postId:
+                  $scope.currentUser.id +
+                  alphabet[Math.floor(Math.random() * alphabet.length)] +
+                  Math.floor(Math.random() * 10), //generate ID like '2f5'
                 // userName: `${$scope.currentUser.firstName} ${$scope.currentUser.lastName}`,
                 title: title,
                 content: content
@@ -91,7 +102,7 @@ const commenterCtrl = function (userService, $scope, $rootScope, $location, $rou
         $scope.$apply();
       }, 5000);
     }
-  }
+  };
 
   $scope.canselCreatingPost = () => {
     $scope.isCreatingPost = false;
@@ -99,7 +110,7 @@ const commenterCtrl = function (userService, $scope, $rootScope, $location, $rou
     $scope.postTitle = "";
     $scope.postContent = "";
     $scope.isPosting = false;
-  }
+  };
 };
 
 export default commenterCtrl;

@@ -1,10 +1,15 @@
 .textArea {
   &__label {
     font-size: $label-size;
+    font-weight: bold;
+  }
+  &__title {
+    @include text-area;
+    font-size: $subtitle-size;
+    font-weight: bold;
   }
   &__field {
-    @include input-field;
-    resize: none;
-    text-align: justify;
+    @include text-area;
+    font-size: 1.3em;
   }
 }

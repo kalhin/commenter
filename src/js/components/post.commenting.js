@@ -7,18 +7,17 @@ const postCommenting =
       id: "=",
       user: "<"
     },
-
-    template:
-      "<div>" +
-        // "<p>{{$ctrl.user.firstName + ' ' + $ctrl.user.lastName}}</p>" +
-        "<div class='input'>" +
-          "<input class='input__field' type='text' placeholder='{{placeholderErrorMessage}}' ng-model='comment'></input>" +   
-        "</div>" +
-        "<div class='btn-position'>" +       
-        `<button ng-class="isLeavingPost ? 'btn-disabled' : 'btn'" ng-disabled="isLeavingPost" ng-click='leavingComment($event)'>Leave</button>` +
-        "<button class='btn' ng-click='canselCommentingPost()'>Cancel</button>" +
-        "</div>" +
-      "</div>",
+    templateUrl: "postCommenting.html",
+    // template:
+    //   "<div>" +
+    //     "<div class='input'>" +
+    //       "<input class='input__field' type='text' placeholder='{{placeholderErrorMessage}}' ng-model='comment'></input>" +   
+    //     "</div>" +
+    //     "<div class='btn-position'>" +       
+    //     `<button ng-class="isLeavingPost ? 'btn-disabled' : 'btn'" ng-disabled="isLeavingPost" ng-click='leavingComment($event)'>Leave</button>` +
+    //     "<button class='btn' ng-click='canselCommentingPost()'>Cancel</button>" +
+    //     "</div>" +
+    //   "</div>",
 
     controller: function postCommentingCtrl($scope, $route) {
         $scope.comment = "";

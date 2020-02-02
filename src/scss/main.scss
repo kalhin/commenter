@@ -11,6 +11,7 @@
 @import "./layout/post";
 @import "./layout/header";
 @import "./layout/footer";
+@import "./layout/modal";
 
 @import "./pages/commenterPage";
 @import "./pages/signUpPage";
@@ -20,7 +21,7 @@ body {
   font-family: "IBM Plex Sans Condensed", sans-serif;
   color: white;
   background-color: black;
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
 }
 

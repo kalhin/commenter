@@ -6,11 +6,12 @@
                 ng-disabled="post.postId == $ctrl.editingId" ng-click="editPost(post.postId, $event)">Edit
                 post</button>
             <button class="btn btn-big" ng-click="removePost(post.postId, $event)">Remove post</button>
+            <modal title="post.title" type="$ctrl.type" ismodalopen="$ctrl.openModal" aproved="$ctrl.aproved" ng-if="$ctrl.openModal"></modal>
         </div>
     </div>
     <div class="post__postBlock">
-        <h3 class="post__title">{{post.title}}</h3>
-        <p class="post__content">{{post.content}}</p>
+        <h3 class="post__title" ng-if="post.postId != $ctrl.editingId">{{post.title}} </h3>
+        <p class="post__content" ng-if="post.postId != $ctrl.editingId">{{post.content}}</p>
         <post-editing id="$ctrl.editingId" ng-if="post.postId == $ctrl.editingId"></post-editing>
 
         <div ng-class="comment.backround%2 === 0 ? 'comment comment-bgColorGreyLight' : 'comment comment-bgColorGrey'"

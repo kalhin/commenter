@@ -1,0 +1,10 @@
+<div>
+    <div class='input'>
+        <input class='input__field' type='text' placeholder='{{placeholderErrorMessage}}' ng-model='comment'></input>
+    </div>
+    <div class='btn-position'>
+        <button ng-class="isLeavingPost ? 'btn-disabled' : 'btn'" ng-disabled="isLeavingPost"
+            ng-click='leavingComment($event)'>Leave</button>
+        <button class='btn' ng-click='canselCommentingPost()'>Cancel</button>
+    </div>
+</div>

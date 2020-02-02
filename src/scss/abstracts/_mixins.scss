@@ -12,6 +12,7 @@
     border-radius: 5px;
     border: 2px solid $black;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 @mixin input-field {
@@ -20,6 +21,18 @@
     padding: 12px 20px;
     font-size: $fields-text-size;
     box-sizing: border-box;
+}
+
+@mixin text-area {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    color: white;
+    background: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    resize: none;
+    border: none;
+    text-align: justify;
 }
 
 @mixin error-message {

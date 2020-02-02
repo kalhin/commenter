@@ -1,0 +1,15 @@
+<div>
+    <div class='textArea'>
+        <!-- <label class='textArea__label' for='title'>Title</label> -->
+        <textarea autofocus class='textArea__title' rows='1' id='title'
+            ng-model='$parent.$parent.post.title'></textarea>
+    </div>
+    <div class='textArea'>
+        <!-- <label class='textArea__label' for='content'>Content</label> -->
+        <textarea rows="4" class='textArea__field' id='content' ng-model='$parent.$parent.post.content'></textarea>
+    </div>
+    <div class='btn-position'>
+        <button class="btn" ng-click='editingPost($event)'>Edit</button>
+        <button class='btn' ng-click='canselEditingPost()'>Cancel</button>
+    </div>
+</div>

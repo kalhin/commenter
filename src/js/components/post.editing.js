@@ -9,28 +9,29 @@ const postEditing =
       id: "="
     },
 
-    template: "<div>" +
-      "<div class='textArea'>" +
-      "<label class='textArea__label' for='title'>Title</label>" +
-      "<textarea class='textArea__field' rows='1' id='title' ng-model='$parent.$parent.post.title'></textarea>" +
-      "</div>" +
-      "<div class='textArea'>" +
-      "<label class='textArea__label' for='content'>Content</label>" +
-      "<textarea class='textArea__field' rows='10' id='content' ng-model='$parent.$parent.post.content'></textarea>" +
-      "</div>" +
-      "<div class='btn-position'>" +
-      `<button ng-class="isEditingPost ? 'btn-disabled' : 'btn'" ng-disabled="isEditingPost" ng-click='editingPost($event)'>Edit</button>` +
-      "<button class='btn' ng-click='canselEditingPost()'>Cancel</button>" +
-      "</div>" +
-      "</div>",
+    templateUrl: "postEditingTemplate.html",
+
+    // template: "<div>" +
+    //   "<div class='textArea'>" +
+    //   "<label class='textArea__label' for='title'>Title</label>" +
+    //   "<textarea class='textArea__field' rows='1' id='title' ng-model='$parent.$parent.post.title'></textarea>" +
+    //   "</div>" +
+    //   "<div class='textArea'>" +
+    //   "<label class='textArea__label' for='content'>Content</label>" +
+    //   "<textarea class='textArea__field' rows='10' id='content' ng-model='$parent.$parent.post.content'></textarea>" +
+    //   "</div>" +
+    //   "<div class='btn-position'>" +
+    //   `<button ng-class="isEditingPost ? 'btn-disabled' : 'btn'" ng-disabled="isEditingPost" ng-click='editingPost($event)'>Edit</button>` +
+    //   "<button class='btn' ng-click='canselEditingPost()'>Cancel</button>" +
+    //   "</div>" +
+    //   "</div>",
 
     controller: function postEditingCtrl($scope, $route) {
-      $scope.isEditingPost = false;
 
       const currentUserId = $scope.$parent.$parent.$parent.currentUserId;
 
       $scope.editingPost = $event => {
-        $scope.isEditingPost = true;
+        this.id = null;
         const title = $scope.$parent.$parent.post.title;
         const content = $scope.$parent.$parent.post.content;
 
@@ -39,9 +40,7 @@ const postEditing =
             if (data[i].postId === this.id) {
               data[i].title = title;
               data[i].content = content;
-              postRequest("posts", JSON.stringify(data)).then(() => {
-                $route.reload();
-              });
+              postRequest("posts", JSON.stringify(data))
               break;
             } else {
               continue

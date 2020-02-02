@@ -18,8 +18,7 @@ import postEditing from "./js/components/post.editing";
 import postCommenting from "./js/components/post.commenting";
 import headerComponent from "./js/components/header.component";
 import footerComponent from "./js/components/footer.component";
-
-
+import postTemplate from "./views/post.html";
 
 const appModule = angular.module("myApp", [ngRoute]);
 
@@ -37,3 +36,7 @@ appModule.component("postEditing", postEditing);
 appModule.component("postCommenting", postCommenting);
 appModule.component("headerComponent", headerComponent);
 appModule.component("footerComponent", footerComponent);
+
+appModule.run(function($templateCache) {
+  $templateCache.put("post.html", postTemplate);
+});

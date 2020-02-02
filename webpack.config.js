@@ -18,6 +18,10 @@ module.exports = {
         exclude: "/node_modules/"
       },
       {
+        test: /\.html$/i,
+        loader: "html-loader"
+      },
+      {
         test: /\.scss$/,
         exclude: "/node_modules/",
         use: [
@@ -29,6 +33,17 @@ module.exports = {
           },
           {
             loader: "sass-loader"
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              esModule: false,
+            },
           }
         ]
       }

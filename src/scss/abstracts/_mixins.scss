@@ -5,6 +5,15 @@
     border: 2px solid $white;
 }
 
+@mixin img-btn {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: 2px solid $black;
+    cursor: pointer;
+}
+
 @mixin input-field {
     width: 100%;
     border-radius: 5px;

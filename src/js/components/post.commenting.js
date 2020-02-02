@@ -4,8 +4,7 @@ const postCommenting =
   ("postCommenting",
   {
     bindings: {
-      postId: "=",
-      commentId: "=",
+      id: "=",
       user: "<"
     },
 
@@ -25,38 +24,34 @@ const postCommenting =
         $scope.comment = "";
         $scope.isLeavingPost = false;
         $scope.placeholderErrorMessage = "Leave your comment here";
+        const currentUserData = $scope.$parent.$parent.$parent.$parent.currentUser;
+        const currentUserId = currentUserData.id;
+        const currentUser = `${currentUserData.firstName} ${currentUserData.lastName}`;
 
       $scope.leavingComment = $event => {
+        const alphabet = "abcdefghijklmnopqrstuvwxyz";
         if ($scope.comment.length === 0) {
             $scope.placeholderErrorMessage = "If you want add comment, you should enter comment here";
             $scope.isLeavingPost = false;
         } else {
             $scope.isLeavingPost = true;
             console.log('id', this)
-            // getRequest("posts").then((data) => {
-        
-            //   for (let i = 0; i < data.length; i++) {
-            //     if (data[i].id === currentUserId) {
-            //       for (let j = 0; j < data[i].posts.length; j++) {
-            //         if (data[i].posts[j].postId === this.id) {
-            //           data[i].posts[j].title = title;
-            //           data[i].posts[j].content = content;
-        
-            //           postRequest("posts", JSON.stringify(data)).then(() => {
-            //             $route.reload();
-            //           });
-            //           break;
-            //         } else {
-            //           continue
-            //         }
-            //       }
-        
-            //       break;
-            //     } else {
-            //       continue;
-            //     }
-            //   }
-            // })
+            getRequest("comments").then(data => {
+              console.log(data)
+              const dateOfCreating = new Date();
+                const newComment =   {
+                  dateOfCreating: dateOfCreating,
+                  commentOwnerId: currentUserId,
+                  postId: this.id,
+                  commentId: "C" + currentUserId + alphabet[Math.floor(Math.random() * alphabet.length)] + Math.floor(Math.random() * 10),
+                  commentOwnerName: currentUser,
+                  content: $scope.comment        
+                }
+                data.push(newComment);
+                postRequest("comments", JSON.stringify(data)).then(() => {
+                  $route.reload();
+                });
+            })
         }
     //     const title = $scope.$parent.$parent.post.title;
     //     const content = $scope.$parent.$parent.post.content;
@@ -64,7 +59,7 @@ const postCommenting =
       }
 
       $scope.canselCommentingPost = () => {
-        $scope.$parent.$parent.$parent.isCommenting = false;
+        this.id = null;
       }
     }
   });

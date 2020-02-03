@@ -11,21 +11,6 @@ const postEditing =
 
     templateUrl: "postEditingTemplate.html",
 
-    // template: "<div>" +
-    //   "<div class='textArea'>" +
-    //   "<label class='textArea__label' for='title'>Title</label>" +
-    //   "<textarea class='textArea__field' rows='1' id='title' ng-model='$parent.$parent.post.title'></textarea>" +
-    //   "</div>" +
-    //   "<div class='textArea'>" +
-    //   "<label class='textArea__label' for='content'>Content</label>" +
-    //   "<textarea class='textArea__field' rows='10' id='content' ng-model='$parent.$parent.post.content'></textarea>" +
-    //   "</div>" +
-    //   "<div class='btn-position'>" +
-    //   `<button ng-class="isEditingPost ? 'btn-disabled' : 'btn'" ng-disabled="isEditingPost" ng-click='editingPost($event)'>Edit</button>` +
-    //   "<button class='btn' ng-click='canselEditingPost()'>Cancel</button>" +
-    //   "</div>" +
-    //   "</div>",
-
     controller: function postEditingCtrl($scope, $route) {
 
       const currentUserId = $scope.$parent.$parent.$parent.currentUserId;

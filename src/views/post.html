@@ -6,16 +6,16 @@
                 ng-disabled="post.postId == $ctrl.editingId" ng-click="editPost(post.postId, $event)">Edit
                 post</button>
             <button class="btn btn-big" ng-click="removePost(post.postId, $event)">Remove post</button>
-            <modal title="post.title" type="$ctrl.type" ismodalopen="$ctrl.openModal" aproved="$ctrl.aproved" ng-if="$ctrl.openModal"></modal>
+            <modal title="post.title" type="$ctrl.type" ismodalopen="$ctrl.openModal" aproved="$ctrl.aproved"
+                ng-if="$ctrl.openModal"></modal>
         </div>
     </div>
     <div class="post__postBlock">
         <h3 class="post__title" ng-if="post.postId != $ctrl.editingId">{{post.title}} </h3>
         <p class="post__content" ng-if="post.postId != $ctrl.editingId">{{post.content}}</p>
         <post-editing id="$ctrl.editingId" ng-if="post.postId == $ctrl.editingId"></post-editing>
-
         <div ng-class="comment.backround%2 === 0 ? 'comment comment-bgColorGreyLight' : 'comment comment-bgColorGrey'"
-            id={{comment.commentId}} ng-repeat="comment in post.allComments">
+            id={{comment.commentId}} ownerId={{comment.commentOwnerId}} ng-repeat="comment in post.allComments">
             <div class="comment__data">
                 <p class="comment__userName">{{comment.commentOwnerName}}</p>
                 <div class="comment__btns" ng-if="$ctrl.commentingId != comment.commentId">
@@ -29,22 +29,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="comment__btns" ng-if="$ctrl.commentingId == comment.commentId">
-                    <textarea autofocus class="comment__input" type="text" ng-model="comment.content"></textarea>
-                    <div>
-                        <div class="comment__btn" ng-click="sendEditingComment(comment.commentId, comment.content)">
-                            <img src="../img/right-arrow.png" alt="right arrow">
-                        </div>
-                        <div class="comment__btn" ng-click="cancelEditingComment($ctrl.commentingId, comment.content)">
-                            <img src="../img/cancel.png" alt="cancel">
-                        </div>
+            </div>
+
+            <div class="comment__btns" ng-if="$ctrl.commentingId == comment.commentId">
+                <textarea autofocus class="comment__input" type="text" ng-model="comment.content"></textarea>
+                <div>
+                    <div class="comment__btn" ng-click="sendEditingComment(comment.commentId, comment.content)">
+                        <img src="../img/right-arrow.png" alt="right arrow">
+                    </div>
+                    <div class="comment__btn" ng-click="cancelEditingComment($ctrl.commentingId, comment.content)">
+                        <img src="../img/cancel.png" alt="cancel">
                     </div>
                 </div>
             </div>
+
         </div>
         <div class="btn-position">
             <button ng-class="post.postId == $ctrl.postId ? 'btn-disabled' : 'btn'" ng-if="!post.isCurrentUser"
-                ng-disabled=" post.postId == $ctrl.postId" ng-click="leaveCommentPost(post.postId, event)">Leave
+                ng-disabled=" post.postId == $ctrl.postId" ng-click="leaveCommentPost(post.postId, $event)">Leave one
                 comment</button>
         </div>
         <post-commenting user="$ctrl.user" commentId="$ctrl.commentingId" id="$ctrl.postId"

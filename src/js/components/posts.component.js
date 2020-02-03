@@ -1,8 +1,10 @@
-import { getRequest, postRequest } from "../API/api";
+import {
+  getRequest,
+  postRequest
+} from "../API/api";
 
 const postsComponent =
-  ("postsComponent",
-  {
+  ("postsComponent", {
     bindings: {
       user: "<"
     },
@@ -11,6 +13,7 @@ const postsComponent =
 
     controller: function postCtrl($scope, $route) {
       $scope.currentUserId;
+      // $scope.errorMessage = "";
       this.type = "post";
       this.openModal = false;
 
@@ -82,28 +85,56 @@ const postsComponent =
       console.log(this.aproved)
 
       $scope.removePost = (currentPostId, event) => {
-        this.openModal = true;
-        if (this.aproved) {
-          console.log(111111111111111)
-          const removingPost = event.target.parentElement.parentElement.parentElement;
-          removingPost.remove();
-  
-          getRequest("posts").then(data => {
-            for (let i = 0; i < data.length; i++) {
-              if (data[i].postId == currentPostId) {
-                data.splice(i, 1);
-                break;
-              } else {
-                continue;
-              }
+        // this.openModal = true;
+        // if (this.aproved) {
+        console.log(111111111111111)
+        const removingPost = event.target.parentElement.parentElement.parentElement;
+        removingPost.remove();
+
+        getRequest("posts").then(data => {
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].postId == currentPostId) {
+              data.splice(i, 1);
+              break;
+            } else {
+              continue;
             }
-            postRequest("posts", JSON.stringify(data));
-          });
-        }
+          }
+          postRequest("posts", JSON.stringify(data));
+        });
+        // }
       };
 
       $scope.leaveCommentPost = (currentPostId, event) => {
-        this.postId = currentPostId;
+        const btn = event.target;
+        console.log(btn)
+        const post = event.target.parentElement.parentElement;
+        const comments = post.querySelectorAll(".comment");
+        const errorMessage = document.createElement("p");
+        errorMessage.classList.add("comPage__errorMessage");
+        errorMessage.innerHTML = "You can leave only one comment!"
+
+        if (!comments.length) {
+          this.postId = currentPostId;
+        } else {
+          let isCurrentUserPosts = []
+          for (let i = 0; i < comments.length; i++) {
+            if (comments[i].attributes.ownerId.value == $scope.currentUserId) {
+              isCurrentUserPosts.push(comments[i]);
+            }
+          }
+
+          if (!isCurrentUserPosts.length) {
+            this.postId = currentPostId;
+          } else {
+            this.postId = null;
+            post.appendChild(errorMessage);
+            setTimeout(() => {
+              errorMessage.remove()
+            }, 3000);
+          }
+          console.log()
+        }
       };
 
       $scope.editComment = (commentId, content) => {
@@ -134,7 +165,7 @@ const postsComponent =
       $scope.removeComment = (commentId, event) => {
         const removingComment =
           event.target.parentElement.parentElement.parentElement.parentElement
-            .parentElement;
+          .parentElement;
         removingComment.remove();
 
         getRequest("comments").then(data => {
